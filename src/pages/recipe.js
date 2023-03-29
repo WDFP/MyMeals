@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import dataDishes from "../data_dishes.json";
+import Image from "next/image";
 // import ingredientsAndSteps from "../ingredients_and_steps.json";
 
 const recipeTitle = "text-2xl text-green-400";
@@ -47,7 +48,7 @@ export default function recipe() {
             >
               <div>
                 {/* recipe image */}
-                <img
+                <Image
                   className="w-full"
                   src={recipe.thumbnail_url}
                   alt={recipe.name}
