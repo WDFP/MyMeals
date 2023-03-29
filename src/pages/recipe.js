@@ -49,7 +49,30 @@ export default function recipe(props) {
                 />
               </div>
               <div className="p-4">
-                <h2 className={"line-clamp-1 " + recipeTitle} title={recipe.title}>{recipe.title}</h2>
+                <div className="stars">
+                  <svg className="stars" viewBox="0 0 576 512" width="100" title="star">
+                    <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+                  </svg>
+                  <svg className="stars"  viewBox="0 0 576 512" width="100" title="star">
+                    <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+                  </svg>
+                  <svg className="stars"  viewBox="0 0 576 512" width="100" title="star">
+                    <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+                  </svg>
+                  <svg className="stars"  viewBox="0 0 576 512" width="100" title="star">
+                    <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+                  </svg>
+                  <svg className="stars" viewBox="0 0 576 512" width="100" title="star">
+                    <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+                  </svg>
+                </div>
+
+                <h2
+                  className={"line-clamp-1 " + recipeTitle}
+                  title={recipe.title}
+                >
+                  {recipe.title}
+                </h2>
                 <div className="flex justify-between mt-4 mb-4 text-gray-500">
                   <div className="flex items-center">
                     <svg
@@ -82,7 +105,9 @@ export default function recipe(props) {
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="ml-1 lg:text-xl">{recipe.numberOfSteps}</span>
+                    <span className="ml-1 lg:text-xl">
+                      {recipe.numberOfSteps}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <svg
@@ -93,12 +118,15 @@ export default function recipe(props) {
                     >
                       <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                     </svg>
-                    <span className="ml-1 lg:text-xl">
-                      {recipe.servings}
-                    </span>
+                    <span className="ml-1 lg:text-xl">{recipe.servings}</span>
                   </div>
                 </div>
-                <p className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3" title={recipe.description}>{recipe.description}</p>
+                <p
+                  className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3"
+                  title={recipe.description}
+                >
+                  {recipe.description}
+                </p>
                 <button className={viewRecipeButton}>{viewRecipeLabel}</button>
               </div>
               <div className={getDifficultyTagClass(recipe.difficulty)}>
