@@ -22,6 +22,18 @@ export default function recipe() {
     }
   };
 
+  const getScoreTagLabel = (score) => {
+    if (score > 60) {
+      return "Easy";
+    } else if (score > 30 && score <= 60) {
+      return "Medium";
+    } else if (score <= 30) {
+      return "Hard";
+    } else {
+      return "Unknown";
+    }
+  };
+
   return (
     <div>
       <div className="container mx-auto p-4">
@@ -112,7 +124,7 @@ export default function recipe() {
               </div>
               {/* score tag */}
               <div className={getScoreTagClass(recipe.score)}>
-                <span>{recipe.score}</span>
+                <span>{getScoreTagLabel(recipe.score)}</span>
               </div>
             </div>
           ))}
