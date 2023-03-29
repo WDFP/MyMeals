@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "title": "Seminole",
+    "cookTime": 59,
+    "numberOfSteps": 10,
+    "servings": 2,
+    "description": "Optional context-sensitive instruction set",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 2,
+    "title": "Iroquois",
+    "cookTime": 48,
+    "numberOfSteps": 20,
+    "servings": 2,
+    "description": "Exclusive zero administration core",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 3,
+    "title": "Aleut",
+    "cookTime": 37,
+    "numberOfSteps": 19,
+    "servings": 5,
+    "description": "Open-architected explicit local area network",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/cc0000/ffffff"
+  },
+  {
+    "id": 4,
+    "title": "Korean",
+    "cookTime": 39,
+    "numberOfSteps": 7,
+    "servings": 2,
+    "description": "Stand-alone stable collaboration",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 5,
+    "title": "Chickasaw",
+    "cookTime": 53,
+    "numberOfSteps": 7,
+    "servings": 2,
+    "description": "Triple-buffered hybrid help-desk",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 6,
+    "title": "Bangladeshi",
+    "cookTime": 14,
+    "numberOfSteps": 17,
+    "servings": 5,
+    "description": "Sharable system-worthy core",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 7,
+    "title": "Yakama",
+    "cookTime": 14,
+    "numberOfSteps": 5,
+    "servings": 3,
+    "description": "Innovative multi-state open architecture",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/cc0000/ffffff"
+  },
+  {
+    "id": 8,
+    "title": "Venezuelan",
+    "cookTime": 23,
+    "numberOfSteps": 6,
+    "servings": 3,
+    "description": "Progressive maximized adapter",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 9,
+    "title": "Thai",
+    "cookTime": 23,
+    "numberOfSteps": 5,
+    "servings": 2,
+    "description": "Distributed 24 hour internet solution",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 10,
+    "title": "Creek",
+    "cookTime": 32,
+    "numberOfSteps": 9,
+    "servings": 5,
+    "description": "Compatible mobile benchmark",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 11,
+    "title": "Guatemalan",
+    "cookTime": 45,
+    "numberOfSteps": 8,
+    "servings": 4,
+    "description": "Cross-group bandwidth-monitored info-mediaries",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 12,
+    "title": "Potawatomi",
+    "cookTime": 53,
+    "numberOfSteps": 8,
+    "servings": 5,
+    "description": "Mandatory stable adapter",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 13,
+    "title": "Aleut",
+    "cookTime": 32,
+    "numberOfSteps": 9,
+    "servings": 5,
+    "description": "Visionary dynamic projection",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 14,
+    "title": "White",
+    "cookTime": 47,
+    "numberOfSteps": 8,
+    "servings": 2,
+    "description": "User-centric next generation Graphical User Interface",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 15,
+    "title": "Pueblo",
+    "cookTime": 48,
+    "numberOfSteps": 20,
+    "servings": 4,
+    "description": "Digitized dedicated local area network",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 16,
+    "title": "Native Hawaiian and Other Pacific Islander (NHPI)",
+    "cookTime": 58,
+    "numberOfSteps": 19,
+    "servings": 4,
+    "description": "Networked 24/7 customer loyalty",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/cc0000/ffffff"
+  },
+  {
+    "id": 17,
+    "title": "Asian",
+    "cookTime": 14,
+    "numberOfSteps": 13,
+    "servings": 2,
+    "description": "Optional zero tolerance policy",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 18,
+    "title": "Cambodian",
+    "cookTime": 26,
+    "numberOfSteps": 8,
+    "servings": 4,
+    "description": "Grass-roots national alliance",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 19,
+    "title": "Black or African American",
+    "cookTime": 42,
+    "numberOfSteps": 12,
+    "servings": 4,
+    "description": "Optimized background benchmark",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 20,
+    "title": "Tlingit-Haida",
+    "cookTime": 14,
+    "numberOfSteps": 12,
+    "servings": 2,
+    "description": "Customer-focused impactful strategy",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/cc0000/ffffff"
+  },
+  {
+    "id": 21,
+    "title": "Chilean",
+    "cookTime": 23,
+    "numberOfSteps": 9,
+    "servings": 3,
+    "description": "User-centric dynamic hardware",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 22,
+    "title": "Peruvian",
+    "cookTime": 20,
+    "numberOfSteps": 13,
+    "servings": 3,
+    "description": "Virtual system-worthy middleware",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/cc0000/ffffff"
+  },
+  {
+    "id": 23,
+    "title": "Apache",
+    "cookTime": 34,
+    "numberOfSteps": 20,
+    "servings": 2,
+    "description": "Reduced optimal instruction set",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 24,
+    "title": "Cherokee",
+    "cookTime": 40,
+    "numberOfSteps": 10,
+    "servings": 4,
+    "description": "Universal content-based infrastructure",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 25,
+    "title": "Eskimo",
+    "cookTime": 12,
+    "numberOfSteps": 15,
+    "servings": 2,
+    "description": "Robust disintermediate concept",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 26,
+    "title": "Dominican (Dominican Republic)",
+    "cookTime": 14,
+    "numberOfSteps": 14,
+    "servings": 5,
+    "description": "Focused non-volatile middleware",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/5fa2dd/ffffff"
+  },
+  {
+    "id": 27,
+    "title": "Tlingit-Haida",
+    "cookTime": 44,
+    "numberOfSteps": 15,
+    "servings": 3,
+    "description": "Expanded multimedia interface",
+    "difficulty": 2,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 28,
+    "title": "Native Hawaiian and Other Pacific Islander (NHPI)",
+    "cookTime": 31,
+    "numberOfSteps": 17,
+    "servings": 4,
+    "description": "Virtual heuristic time-frame",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  },
+  {
+    "id": 29,
+    "title": "Kiowa",
+    "cookTime": 30,
+    "numberOfSteps": 8,
+    "servings": 2,
+    "description": "Configurable reciprocal moratorium",
+    "difficulty": 3,
+    "image": "http://dummyimage.com/x.png/dddddd/000000"
+  },
+  {
+    "id": 30,
+    "title": "Venezuelan",
+    "cookTime": 14,
+    "numberOfSteps": 9,
+    "servings": 3,
+    "description": "Synchronised systemic hub",
+    "difficulty": 1,
+    "image": "http://dummyimage.com/x.png/ff4444/ffffff"
+  }
+]
