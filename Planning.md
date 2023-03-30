@@ -9,9 +9,9 @@
 
 # WireFrame
 
-- Page 1, Home page, collections available as a button, see pic example in [a relative link](docs/Home Page??.PNG)
+- Page 1, Home page, collections available as a button, see pic example in ![a relative link](docs/Home_page.png)
   Nav Bar- 1. ?? Search ?? 2. LogIn/Register 3. Account/Profile (incl. favourites, Meal Plans, Grocery Lists for each LoggedIn User) 4. Recently Viewed/Most Popular.
 - Page 2, (/discover) same as Carolyn's example
 - page 3 (/customize), for Logged in User, can favourite item with the count of how many likes, customize recipe by adding to meal plan (daily, weekly), edit or customize recipe item, save to both user accounts and page 4 /grocery_list, Add notes to recipe, add reviews of recipe.
-- Page 4 (/grocery_list) see pic example in [a relative link](docs/Grocery:Shopping List??.PNG)
+- Page 4 (/grocery_list) see pic example in ![a relative link](docs/grocery_list.png)
 - Page 5 Recently viewed/Most Popular Viewed.
