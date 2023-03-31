@@ -1,11 +1,20 @@
 # User Stories & Scenarios
 
 - Home Page (./docs) example?
+clickable collections (Omnivore, Vegetarian, Vegan, BBQ, Holiday, Low-Carb, Mediterranean, International), takes you to /discover page.
+- assigned to Victor
 
-* clickable collections (Omnivore, Vegetarian, Vegan, BBQ, Holiday, Low-Carb, Mediterranean, International), takes you to /discover page.
 * page 2 (/discover), recipe images related to collection choice, clickable, takes you to page 3 /customize.
+- assigned to Carolyn
+
+* page 2A (/cooking-instructions), grabbed from mock data and displayed here on this page
+- assigned to ????
+
 * page 3 (/customize), for Logged in User, can favourite item with the count of how many likes, customize recipe by adding to meal plan (daily, weekly), edit or customize recipe item, save to both user accounts and page 4 /grocery_list.
+- assigned to Lucas
+
 * page 4 (/grocery_list), items needed for recipe, add item to list, edit list, delete item on list or total recipe, save to account (favourite), ?? Possible link to Grocery store where sold ??, share recipe item by email or ?? Social Media ??
+- assigned to Nima
 
 # WireFrame
 
