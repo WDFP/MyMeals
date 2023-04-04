@@ -1,36 +1,37 @@
+/* eslint-disable @next/next/no-img-element */
+import dataDishes from "../data_dishes.json";
 import Image from "next/image";
-import test_picture from "../images/test_food.jpeg";
-import MOCK_DATA from "../MOCK_DATA.json";
+// import ingredientsAndSteps from "../ingredients_and_steps.json";
 
 const recipeTitle = "text-2xl text-green-400";
 const viewRecipeButton =
   "text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700";
 const viewRecipeLabel = "View Recipe";
 
-export default function recipe(props) {
-  const getDifficultyTagClass = (difficulty) => {
-    switch (difficulty) {
-      case 1:
-        return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
-      case 2:
-        return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
-      case 3:
-        return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
-      default:
-        return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
+export default function recipe() {
+
+  const getScoreTagClass = (score) => {
+
+    if (score > 60) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
+    } else if (score > 30 && score <= 60) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
+    } else if (score <= 30) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
+    } else {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
     }
   };
 
-  const getDifficultyLevel = (difficulty) => {
-    switch (difficulty) {
-      case 1:
-        return "Easy";
-      case 2:
-        return "Medium";
-      case 3:
-        return "Hard";
-      default:
-        return "Unknown";
+  const getScoreTagLabel = (score) => {
+    if (score > 60) {
+      return "Easy";
+    } else if (score > 30 && score <= 60) {
+      return "Medium";
+    } else if (score <= 30) {
+      return "Hard";
+    } else {
+      return "Unknown";
     }
   };
 
@@ -39,17 +40,30 @@ export default function recipe(props) {
       <div className="container mx-auto p-4">
         {/* <!-- recipe card grid--> */}
         <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
-          {MOCK_DATA.map((recipe) => (
-            <div className="flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md">
+          {dataDishes.map((recipe, index) => (
+            
+            <div
+              key={index}
+              className="flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md"
+            >
               <div>
+                {/* recipe image */}
                 <Image
                   className="w-full"
-                  src={test_picture}
-                  alt={recipe.title}
+                  src={recipe.thumbnail_url}
+                  alt={recipe.name}
+                  width={500}
+                  height={500}
                 />
               </div>
               <div className="p-4">
-                <h2 className={"line-clamp-1 " + recipeTitle} title={recipe.title}>{recipe.title}</h2>
+                {/* recipe title */}
+                <h2
+                  className={"line-clamp-1 " + recipeTitle}
+                  title={recipe.name}
+                >
+                  {recipe.name}
+                </h2>
                 <div className="flex justify-between mt-4 mb-4 text-gray-500">
                   <div className="flex items-center">
                     <svg
@@ -66,7 +80,8 @@ export default function recipe(props) {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span className="ml-1 lg:text-xl">{recipe.cookTime}</span>
+                    {/* cook time */}
+                    <span className="ml-1 lg:text-xl">{recipe.cook_time}</span>
                   </div>
                   <div className="flex items-center">
                     <svg
@@ -82,7 +97,8 @@ export default function recipe(props) {
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span className="ml-1 lg:text-xl">{recipe.numberOfSteps}</span>
+                    {/* Number of steps */}
+                    <span className="ml-1 lg:text-xl">#</span>
                   </div>
                   <div className="flex items-center">
                     <svg
@@ -93,16 +109,23 @@ export default function recipe(props) {
                     >
                       <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                     </svg>
-                    <span className="ml-1 lg:text-xl">
-                      {recipe.servings}
-                    </span>
+                    {/* servings */}
+                    <span className="ml-1 lg:text-xl">{recipe.servings}</span>
                   </div>
                 </div>
-                <p className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3" title={recipe.description}>{recipe.description}</p>
+                {/* description */}
+                <p
+                  className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3"
+                  title={recipe.description}
+                >
+                  {recipe.description}
+                </p>
+                {/* View Recipe Button */}
                 <button className={viewRecipeButton}>{viewRecipeLabel}</button>
               </div>
-              <div className={getDifficultyTagClass(recipe.difficulty)}>
-                <span>{getDifficultyLevel(recipe.difficulty)}</span>
+              {/* score tag */}
+              <div className={getScoreTagClass(recipe.score)}>
+                <span>{getScoreTagLabel(recipe.score)}</span>
               </div>
             </div>
           ))}
