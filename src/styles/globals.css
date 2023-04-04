@@ -3,18 +3,7 @@
 @tailwind utilities;
 
 
-.stars {
-  position: relative;
-  white-space: nowrap;
-  width: 11em;
-  display: flex;
-  padding-left: 0%;
-  padding-top: 0%;
-}
 
-svg.stars {
-  fill: gold;
-}
 /* Next.js default CSS
  
 :root {
