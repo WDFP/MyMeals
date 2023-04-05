@@ -60,21 +60,41 @@ export default function Home() {
         <title>MyMeals HomePage</title>
       </Head>
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">
-          Welcome to the MyMeals HomePage
-        </h1>
+        <div>
+          <h1 className="flex text-3xl font-bold mb-4 justify-evenly flex-row">
+            Welcome to the MyMeals HomePage
+          </h1>
+          <form class="flex flex-row justify-evenly">
+            <input
+              class="py-4 text-2xl border-gray-300 rounded-l-md w-3/4 bg-gray-100"
+              type="text"
+              placeholder="Search..."
+            />
+            <button
+              class="py-4  bg-green-400 text-white rounded-3xl w-1/4 border border-gray-300 hover:bg-blue-500"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
         <div className="flex flex-col items-center w-full">
           {CATEGORIES.map((i) => {
             return (
               <div className="flex w-full items-center justify-center">
                 <Link
-                  className="bg-blue-100 w-80 text-center py-6 rounded-lg text-2xl font-medium"
+                  className="bg-green-400 text-white w-80 text-center py-6 rounded-3xl text-2xl font-medium border-solid hover:border-dotted border-black border-2"
                   href={i.href}
                 >
                   {i.title}
                 </Link>
-                <img src={i.img} className="w-20 h-20" />
-                <div className="bg-orange-100 w-80 text-center py-6 rounded-lg test-xl font-small">
+                <Link href={i.href}>
+                  <img
+                    src={i.img}
+                    className="w-20 h-20 rounded-3xl border-solid hover:border-dotted border-black border-2"
+                  />
+                </Link>
+                <div className="bg-orange-200 w-80 text-center py-6 rounded-3xl test-xl font-small">
                   {i.description}
                 </div>
               </div>
