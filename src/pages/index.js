@@ -104,12 +104,7 @@ export default function Home() {
                     className="w-60 h-60 rounded-3xl border-solid border-black border-2"
                   />
                 </Popup>
-                {/* <Link href={i.href}>
-                  <img
-                    src={i.img}
-                    className="w-20 h-20 rounded-3xl border-solid hover:border-dotted border-black border-2"
-                  />
-                </Link> */}
+
                 <div className="bg-orange-200 w-80 text-center py-6 rounded-3xl test-xl font-small">
                   {i.description}
                 </div>
