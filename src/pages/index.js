@@ -1,9 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 import Link from "next/link";
 
@@ -11,34 +6,42 @@ const CATEGORIES = [
   {
     href: "/recipe",
     title: "Omnivore",
+    description: "You eat both Meat and Plant products",
   },
   {
     href: "/recipe",
     title: "Vegetarian",
-  },
-  {
-    href: "/recipe",
-    title: "Vegan",
+    description: "You don't eat Meat or Fish",
   },
   {
     href: "/recipe",
     title: "Bbq",
+    description: "You love the outdoor smoke",
   },
   {
     href: "/recipe",
     title: "Holiday",
+    description: "You love the Advent Calendar Meal",
   },
   {
     href: "/recipe",
     title: "Low-carb",
+    description: "You are on a Special Diet",
   },
   {
     href: "/recipe",
     title: "Mediterranean",
+    description: "You eat loads of veggies, nuts and olive oil",
   },
   {
     href: "/recipe",
     title: "International",
+    description: "You travel around the world in 90 days",
+  },
+  {
+    href: "/recipe",
+    title: "All Recipes",
+    description: "Can't decide, Choose from All the Recipes",
   },
 ];
 
@@ -50,17 +53,20 @@ export default function Home() {
       </Head>
       <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-3xl font-bold mb-4">
-          Welcome to the Recipe HomePage
+          Welcome to the MyMeals HomePage
         </h1>
-        <div className="flex flex-col items-center space-y-2 w-full">
+        <div className="flex flex-col items-center space-between w-80">
           {CATEGORIES.map((i) => {
             return (
+              <>
               <Link
-                className="bg-blue-100 w-full text-center py-4 rounded-lg text-xl font-medium"
+                className="bg-blue-100 w-80 text-center py-3 rounded-lg text-2xl font-medium"
                 href={i.href}
               >
                 {i.title}
               </Link>
+              <span className="bg-orange-100 text-center rounded-lg test-xl font-small">{i.description}</span>
+              </>
             );
           })}
         </div>
