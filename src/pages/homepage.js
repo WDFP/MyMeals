@@ -1,35 +1,35 @@
 import Link from 'next/link';
 
 const LINKS = [{
-  href: "/recipes-Omnivore",
+  href: "/recipe",
   title: "Omnivore",
 },
 {
-  href: "/recipes-Vegetarian",
+  href: "/recipe",
   title: "Vegetarian",
 },
 {
-  href: "/recipes-Vegan",
+  href: "/recipe",
   title: "Vegan",
 },
 {
-  href: "/recipes-Bbq",
+  href: "/recipe",
   title: "Bbq",
 },
 {
-  href: "/recipes-Holiday",
+  href: "/recipe",
   title: "Holiday",
 },
 {
-  href: "/recipes-Low-carb",
+  href: "/recipe",
   title: "Low-carb",
 },
 {
-  href: "/recipes-Mediterranean",
+  href: "/recipe",
   title: "Mediterranean",
 },
 {
-  href: "/recipes-International",
+  href: "/recipe",
   title: "International",
 }];
 
