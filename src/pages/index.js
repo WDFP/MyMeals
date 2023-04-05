@@ -5,40 +5,42 @@ import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import Link from 'next/link';
+import Link from "next/link";
 
-const LINKS = [{
-  href: "/recipes-Omnivore",
-  title: "Omnivore",
-},
-{
-  href: "/recipes-Vegetarian",
-  title: "Vegetarian",
-},
-{
-  href: "/recipes-Vegan",
-  title: "Vegan",
-},
-{
-  href: "/recipes-Bbq",
-  title: "Bbq",
-},
-{
-  href: "/recipes-Holiday",
-  title: "Holiday",
-},
-{
-  href: "/recipes-Low-carb",
-  title: "Low-carb",
-},
-{
-  href: "/recipes-Mediterranean",
-  title: "Mediterranean",
-},
-{
-  href: "/recipes-International",
-  title: "International",
-}];
+const CATEGORIES = [
+  {
+    href: "/recipe",
+    title: "Omnivore",
+  },
+  {
+    href: "/recipe",
+    title: "Vegetarian",
+  },
+  {
+    href: "/recipe",
+    title: "Vegan",
+  },
+  {
+    href: "/recipe",
+    title: "Bbq",
+  },
+  {
+    href: "/recipe",
+    title: "Holiday",
+  },
+  {
+    href: "/recipe",
+    title: "Low-carb",
+  },
+  {
+    href: "/recipe",
+    title: "Mediterranean",
+  },
+  {
+    href: "/recipe",
+    title: "International",
+  },
+];
 
 export default function Home() {
   return (
@@ -51,7 +53,7 @@ export default function Home() {
           Welcome to the Recipe HomePage
         </h1>
         <div className="flex flex-col items-center space-y-2 w-full">
-          {LINKS.map((i) => {
+          {CATEGORIES.map((i) => {
             return (
               <Link
                 className="bg-blue-100 w-full text-center py-4 rounded-lg text-xl font-medium"
