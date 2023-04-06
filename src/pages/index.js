@@ -64,21 +64,8 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div>
           <h1 className="flex text-3xl font-bold mb-4 justify-evenly flex-row">
-            Welcome to the MyMeals HomePage
+            Welcome to MyMeals
           </h1>
-          <form class="flex flex-row justify-evenly">
-            <input
-              class="py-4 text-2xl border-gray-300 rounded-l-md w-3/4 bg-gray-100"
-              type="text"
-              placeholder="Search..."
-            />
-            <button
-              class="py-4  bg-green-400 text-white rounded-3xl w-1/4 border border-gray-300 hover:bg-blue-500"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
         <div className="flex flex-col items-center w-full">
           {CATEGORIES.map((i) => {
