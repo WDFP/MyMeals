@@ -60,10 +60,10 @@ export default function Home() {
       <Head>
         <title>MyMeals HomePage</title>
       </Head>
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className=" bg-zinc-800 flex flex-col items-center justify-center min-h-screen">
         <NavBar/>
         <div className="mt-20">
-          <h1 className="flex text-3xl font-bold mb-4 justify-evenly flex-row">
+          <h1 className="flex text-3xl text-white font-bold mb-4 justify-evenly flex-row">
             Welcome to MyMeals
           </h1>
         </div>
