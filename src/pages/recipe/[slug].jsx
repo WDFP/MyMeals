@@ -5,7 +5,12 @@ const Recipe = () => {
   const { slug } = router.query;
   
 
-  return (<p>Post: {slug}</p>);
+  return (
+    <div>
+      <p>Post: {slug}</p>
+      File to config: src/pages/recipe/[slug].jsx
+    </div>
+  );
 };
 
 export default Recipe;

@@ -123,11 +123,11 @@ export default function Recipes({recipes}) {
                 <Link
                   href={{
                     pathname: `/recipe/${recipe.slug}`,
-                    query: {
-                      title: recipe.name,
-                      image: recipe.thumbnail_url,
-                      slug: recipe.slug,
-                    },
+                    // query: {
+                    //   title: recipe.name,
+                    //   image: recipe.thumbnail_url,
+                    //   slug: recipe.slug,
+                    // },
                   }}
                 >
                   <button className='text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700'>
