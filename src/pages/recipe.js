@@ -25,30 +25,30 @@ export default function Recipes({ recipes }) {
       recipe.name.toLowerCase().includes(filterText.toLowerCase())
     )
     .filter((recipe) => {
-      if (filters.easy && recipe.score > 60) return true;
-      if (filters.medium && recipe.score <= 60 && recipe.score > 30) return true;
-      if (filters.hard && recipe.score <= 30) return true;
+      if (filters.easy && recipe.difficulty === 1) return true;
+      if (filters.medium && recipe.difficulty === 2) return true;
+      if (filters.hard && recipe.difficulty === 3) return true;
       return !filters.easy && !filters.medium && !filters.hard;
     });
 
-  const getScoreTagClass = (score) => {
-    if (score > 60) {
+  const getDifficultyTagClass = (difficulty) => {
+    if (difficulty === 1) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
-    } else if (score > 30 && score <= 60) {
+    } else if (difficulty === 2) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
-    } else if (score <= 30) {
+    } else if (difficulty === 3) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
     } else {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
     }
   };
 
-  const getScoreTagLabel = (score) => {
-    if (score > 60) {
+  const getDifficultyTagLabel = (difficulty) => {
+    if (difficulty === 1) {
       return "Easy";
-    } else if (score > 30 && score <= 60) {
+    } else if (difficulty === 2) {
       return "Medium";
-    } else if (score <= 30) {
+    } else if (difficulty === 3) {
       return "Hard";
     } else {
       return "Unknown";
@@ -282,8 +282,8 @@ export default function Recipes({ recipes }) {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {/* Number of steps */}
-                      <span className="ml-1 lg:text-xl">#</span>
+                      {/* Number of score */}
+                      <span className="ml-1 lg:text-xl">{recipe.score}</span>
                     </div>
                     <div className="flex items-center">
                       <svg
@@ -319,9 +319,9 @@ export default function Recipes({ recipes }) {
                     <button className={viewRecipeButton}>{viewRecipeLabel}</button>
                   </Link>
                 </div>
-                {/* score tag */}
-                <div className={getScoreTagClass(recipe.score)}>
-                  <span>{getScoreTagLabel(recipe.score)}</span>
+                {/* Difficulty tag */}
+                <div className={getDifficultyTagClass(recipe.difficulty)}>
+                  <span>{getDifficultyTagLabel(recipe.difficulty)}</span>
                 </div>
               </div>
             ))}
