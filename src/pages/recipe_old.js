@@ -1,17 +1,20 @@
-/* eslint-disable func-style */
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import clientPromise from "@/lib/mongodb";
-const { MONGODB_DB } = process.env;
+import Link from "next/link";
+import dataDishes from "../data_dishes.json";
+// REMOVE THIS FILE WHEN PROJECT IS DONE
+// REMOVE THIS FILE WHEN PROJECT IS DONE
+// REMOVE THIS FILE WHEN PROJECT IS DONE
+
+
+// import ingredientsAndSteps from "../ingredients_and_steps.json";
 
 const recipeTitle = "text-2xl text-green-400";
 const viewRecipeButton =
   "text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700";
 const viewRecipeLabel = "View Recipe";
 
-export default function Recipes({recipes}) {
-
+export default function recipe() {
   const getScoreTagClass = (score) => {
     if (score > 60) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
@@ -42,7 +45,8 @@ export default function Recipes({recipes}) {
         {/* <!-- recipe card grid--> */}
         <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
           {recipes.map((recipe) => (
-            <div key={recipe.id}
+            <div
+              key={index}
               className='flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md'
             >
               <div>
@@ -131,7 +135,7 @@ export default function Recipes({recipes}) {
                   }}
                 >
                   <button className='text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700'>
-                  View Recipe
+                    View Recipe
                   </button>
                 </Link>
               </div>
@@ -145,25 +149,4 @@ export default function Recipes({recipes}) {
       </div>
     </div>
   );
-}
-
-
-
-export async function getServerSideProps() {
-  try {
-    const client = await clientPromise;
-    const db = client.db(MONGODB_DB);
-
-    const recipes = await db
-      .collection("recipes")
-      .find({})
-      .limit(20)
-      .toArray();
-
-    return {
-      props: { recipes: JSON.parse(JSON.stringify(recipes)) },
-    };
-  } catch (e) {
-    console.error(e);
-  }
 }
