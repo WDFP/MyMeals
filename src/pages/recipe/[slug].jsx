@@ -8,6 +8,10 @@ function Recipe() {
   const router = useRouter();
   const { slug, title, image } = router.query;
 
+  if (!data || !router.query || !data[router.query.slug]) {
+    return;
+  }
+
   const ingredientData = data[slug]["ingredient_sections"];
   const instructionData = data[slug]["instructions"];
   console.log(data[slug]);
@@ -25,13 +29,13 @@ function Recipe() {
           <div className='flex'>
             <button
               type='button'
-              class='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
+              className='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
             >
               <Image src={StarOutline} alt='svg' width={24} height={24} />
             </button>
             <button
               type='button'
-              class='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
+              className='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
             >
               Add to Meal Plan
             </button>
@@ -51,20 +55,20 @@ function Recipe() {
             <div key={section.name} className='pb-4'>
               <h1 className='text-3xl pb-5 w-1/3 text-white'>{section.name}</h1>
               <div className=''>
-                <div class=' overflow-x-auto'>
-                  <table class='w-full text-sm text-left text-gray-400'>
-                    <thead class='text-xs uppercase bg-zinc-700 text-gray-400'>
+                <div className=' overflow-x-auto'>
+                  <table className='w-full text-sm text-left text-gray-400'>
+                    <thead className='text-xs uppercase bg-zinc-700 text-gray-400'>
                       <tr>
-                        <th scope='col' class='px-6 py-3'>
+                        <th scope='col' className='px-6 py-3'>
                           Ingredient
                         </th>
-                        <th scope='col' class='px-2 py-3'>
+                        <th scope='col' className='px-2 py-3'>
                           Quantity
                         </th>
-                        <th scope='col' class='px-2 py-3'>
+                        <th scope='col' className='px-2 py-3'>
                           Unit
                         </th>
-                        <th scope='col' class='px-2 py-3'>
+                        <th scope='col' className='px-2 py-3'>
                           Extra
                         </th>
                       </tr>
@@ -72,22 +76,22 @@ function Recipe() {
                     <tbody>
                       {section.ingredients.map((ingredient) => (
                         <tr
-                          class='bg-zinc-900 border-b dark:border-gray-700'
+                          className='bg-zinc-900 border-b dark:border-gray-700'
                           key={ingredient.name}
                         >
                           <th
                             scope='row'
-                            class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                            className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
                           >
                             {ingredient.name}
                           </th>
-                          <td class='px-2 py-4'>
+                          <td className='px-2 py-4'>
                             {ingredient.primary_unit.quantity}
                           </td>
-                          <td class='px-2 py-4'>
+                          <td className='px-2 py-4'>
                             {ingredient.primary_unit.display}
                           </td>
-                          <td class='px-2 py-4'>extra comment</td>
+                          <td className='px-2 py-4'>extra comment</td>
                         </tr>
                       ))}
                     </tbody>
