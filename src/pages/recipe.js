@@ -169,7 +169,7 @@ export default function Recipes({ recipes }) {
               </ul>
               {/* Second section of the filter */}
               <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
-                <span class="text-sm text-gray-700 border-gray-100"> Difficulty </span>
+                <span class="text-sm text-gray-700 border-gray-100"> Saved </span>
                 <span class="text-sm text-gray-700 border-gray-100"> 0 Selected </span>
                 <button
                   type="button"
@@ -180,7 +180,7 @@ export default function Recipes({ recipes }) {
                 </button>
               </header>
               <ul class="p-4 space-y-1 border-t border-gray-200">
-                {/* Easy filter */}
+                {/* Favourite filter */}
                 <li>
                   <label for="FilterEasy" class="inline-flex items-center gap-2">
                     <input
@@ -191,10 +191,10 @@ export default function Recipes({ recipes }) {
                       checked={filters.easy}
                       onChange={onFilterClicked}/>
 
-                    <span class="text-sm font-medium text-gray-700"> Easy </span>
+                    <span class="text-sm font-medium text-gray-700"> Favourite </span>
                   </label>
                 </li>
-                {/* Medium filter */}
+                {/* My Plan filter */}
                 <li>
                   <label for="FilterMedium" class="inline-flex items-center gap-2">
                     <input
@@ -204,10 +204,10 @@ export default function Recipes({ recipes }) {
                       name="medium"
                       checked={filters.medium}
                       onChange={onFilterClicked}/>
-                    <span class="text-sm font-medium text-gray-700">  Medium  </span>
+                    <span class="text-sm font-medium text-gray-700">  In my plan  </span>
                   </label>
                 </li>
-                {/* Hard filter */}
+                {/* Owned filter */}
                 <li>
                   <label for="FilterHard" class="inline-flex items-center gap-2">
                     <input
@@ -217,7 +217,7 @@ export default function Recipes({ recipes }) {
                       name="hard"
                       checked={filters.hard}
                       onChange={onFilterClicked}/>
-                    <span class="text-sm font-medium text-gray-700"> Hard </span>
+                    <span class="text-sm font-medium text-gray-700"> Owned by me </span>
                   </label>
                 </li>
               </ul>
