@@ -80,18 +80,24 @@ export default function Recipes({ recipes }) {
   return (
     <div>
       <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900">Recipes</h1>
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900"> Recipes </h1>
         
         <div class="space-y-2 p-4 sticky top-0 z-10 bg-gray-100">
-          <span class="text-xs font-medium "> Filters </span>
+          {/* Filter dropdown */}
+          <div className="mb-4">
+            <input
+              className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
+              type="text"
+              placeholder="Filter by recipe name"
+              value={filterText}
+              onChange={(e) => setFilterText(e.target.value)}
+            /></div>
           <details
-            class="overflow-hidden rounded border border-gray-300 bg-gray-200 [&_summary::-webkit-details-marker]:hidden"
-          >
+            class="overflow-hidden rounded border border-gray-300 bg-gray-200 [&_summary::-webkit-details-marker]:hidden">
             <summary
-              class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer"
-            >
-              <span class="text-sm font-medium"> Difficulty </span>
-
+              class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer">
+                
+              <span class="text-sm font-medium"> Additional Filters </span>
               <span class="transition group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,32 +105,28 @@ export default function Recipes({ recipes }) {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-4 h-4"
-                >
+                  class="w-4 h-4">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
                 </svg>
               </span>
             </summary>
-
-            <div class="bg-white border-t border-gray-200">
-              <header class="flex items-center justify-between p-4">
+            <div class="bg-white border-t border-gray-200"> {/* section under the Difficulty header */}
+              <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
+                <span class="text-sm text-gray-700 border-gray-100"> Difficulty </span>
                 <span class="text-sm text-gray-700"> 0 Selected </span>
-
                 <button
                   type="button"
                   class="text-sm text-gray-900 underline underline-offset-4"
                   onClick={reset}
-                  onChange={onFilterClicked}
-                >
-          Reset
+                  onChange={onFilterClicked}>
+                  Reset
                 </button>
               </header>
-
               <ul class="p-4 space-y-1 border-t border-gray-200">
+                {/* Easy filter */}
                 <li>
                   <label for="FilterEasy" class="inline-flex items-center gap-2">
                     <input
@@ -133,15 +135,12 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="easy"
                       checked={filters.easy}
-                      onChange={onFilterClicked}
-                    />
+                      onChange={onFilterClicked}/>
 
-                    <span class="text-sm font-medium text-gray-700">
-                    Easy
-                    </span>
+                    <span class="text-sm font-medium text-gray-700"> Easy </span>
                   </label>
                 </li>
-
+                {/* Medium filter */}
                 <li>
                   <label for="FilterMedium" class="inline-flex items-center gap-2">
                     <input
@@ -150,15 +149,11 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="medium"
                       checked={filters.medium}
-                      onChange={onFilterClicked}
-                    />
-
-                    <span class="text-sm font-medium text-gray-700">
-                    Medium
-                    </span>
+                      onChange={onFilterClicked}/>
+                    <span class="text-sm font-medium text-gray-700">  Medium  </span>
                   </label>
                 </li>
-
+                {/* Hard filter */}
                 <li>
                   <label for="FilterHard" class="inline-flex items-center gap-2">
                     <input
@@ -167,59 +162,25 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="hard"
                       checked={filters.hard}
-                      onChange={onFilterClicked}
-                    />
-
-                    <span class="text-sm font-medium text-gray-700">
-                    Hard
-                    </span>
+                      onChange={onFilterClicked}/>
+                    <span class="text-sm font-medium text-gray-700"> Hard </span>
                   </label>
                 </li>
               </ul>
-            </div>
-          </details>
-
-          <details
-            class="overflow-hidden rounded border border-gray-300 bg-gray-200 [&_summary::-webkit-details-marker]:hidden"
-          >
-            <summary
-              class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer"
-            >
-              <span class="text-sm font-medium"> Difficulty </span>
-
-              <span class="transition group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-4 h-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              </span>
-            </summary>
-
-            <div class="bg-white border-t border-gray-200">
-              <header class="flex items-center justify-between p-4">
-                <span class="text-sm text-gray-700"> 0 Selected </span>
-
+              {/* Second section of the filter */}
+              <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
+                <span class="text-sm text-gray-700 border-gray-100"> Difficulty </span>
+                <span class="text-sm text-gray-700 border-gray-100"> 0 Selected </span>
                 <button
                   type="button"
                   class="text-sm text-gray-900 underline underline-offset-4"
                   onClick={reset}
-                  onChange={onFilterClicked}
-                >
-          Reset
+                  onChange={onFilterClicked}>
+                  Reset
                 </button>
               </header>
-
               <ul class="p-4 space-y-1 border-t border-gray-200">
+                {/* Easy filter */}
                 <li>
                   <label for="FilterEasy" class="inline-flex items-center gap-2">
                     <input
@@ -228,15 +189,12 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="easy"
                       checked={filters.easy}
-                      onChange={onFilterClicked}
-                    />
+                      onChange={onFilterClicked}/>
 
-                    <span class="text-sm font-medium text-gray-700">
-                    Easy
-                    </span>
+                    <span class="text-sm font-medium text-gray-700"> Easy </span>
                   </label>
                 </li>
-
+                {/* Medium filter */}
                 <li>
                   <label for="FilterMedium" class="inline-flex items-center gap-2">
                     <input
@@ -245,15 +203,11 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="medium"
                       checked={filters.medium}
-                      onChange={onFilterClicked}
-                    />
-
-                    <span class="text-sm font-medium text-gray-700">
-                    Medium
-                    </span>
+                      onChange={onFilterClicked}/>
+                    <span class="text-sm font-medium text-gray-700">  Medium  </span>
                   </label>
                 </li>
-
+                {/* Hard filter */}
                 <li>
                   <label for="FilterHard" class="inline-flex items-center gap-2">
                     <input
@@ -262,12 +216,8 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="hard"
                       checked={filters.hard}
-                      onChange={onFilterClicked}
-                    />
-
-                    <span class="text-sm font-medium text-gray-700">
-                    Hard
-                    </span>
+                      onChange={onFilterClicked}/>
+                    <span class="text-sm font-medium text-gray-700"> Hard </span>
                   </label>
                 </li>
               </ul>
@@ -276,9 +226,6 @@ export default function Recipes({ recipes }) {
         </div>
         <div className="container mx-auto p-4">
           {/* filter input */}
-
- 
-
           {/* <div className="mb-4">
           <input
             className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
@@ -428,7 +375,8 @@ export default function Recipes({ recipes }) {
   );
 }
 
-export async function getServerSideProps() {
+// How do I paginate my data with getStaticProps?
+export async function getStaticProps() {
   try {
     const client = await clientPromise;
     const db = client.db(MONGODB_DB);
