@@ -6,7 +6,7 @@ export default async(req, res) => {
   try {
 
     const client = await clientPromise;
-    const db = client.db("nextjs_mongodb");
+    const db = client.db(process.env.MONGODB_DB);
 
     const ingredientsAndInstructions = await db
       .collection("ingredients_instructions")
@@ -15,7 +15,6 @@ export default async(req, res) => {
       .toArray();
 
     res.json(ingredientsAndInstructions);
-    console.log(ingredientsAndInstructions);
   } catch (e) {
     console.error(e);
   }
