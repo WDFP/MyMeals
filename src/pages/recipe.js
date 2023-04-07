@@ -12,6 +12,11 @@ const viewRecipeLabel = "View Recipe";
 
 export default function Recipes({recipes}) {
 
+  const [filterText, setFilterText] = useState("");
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(filterText.toLowerCase())
+  );
+
   const getScoreTagClass = (score) => {
     if (score > 60) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
@@ -39,9 +44,20 @@ export default function Recipes({recipes}) {
   return (
     <div>
       <div className='container mx-auto p-4'>
+        {/* filter input */}
+        <div className="mb-4">
+          <input 
+            className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
+            type="text" 
+            placeholder="Filter by recipe name"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+          />
+        </div>
+
         {/* <!-- recipe card grid--> */}
         <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
-          {recipes.map((recipe) => (
+          {filteredRecipes.map((recipe) => (
             <div key={recipe.id}
               className='flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md'
             >
@@ -130,8 +146,8 @@ export default function Recipes({recipes}) {
                     },
                   }}
                 >
-                  <button className='text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700'>
-                  View Recipe
+                  <button className={viewRecipeButton}>
+                    {viewRecipeLabel}
                   </button>
                 </Link>
               </div>
@@ -147,8 +163,6 @@ export default function Recipes({recipes}) {
   );
 }
 
-
-
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;
@@ -157,7 +171,7 @@ export async function getServerSideProps() {
     const recipes = await db
       .collection("recipes")
       .find({})
-      .limit(20)
+      // .limit()
       .toArray();
 
     return {
