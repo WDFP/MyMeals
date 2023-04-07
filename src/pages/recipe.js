@@ -84,6 +84,7 @@ export default function Recipes({ recipes }) {
         
         <div class="space-y-2 p-4 sticky top-0 z-10 bg-gray-100">
           {/* Filter dropdown */}
+          {/* Filter text */}
           <div className="mb-4">
             <input
               className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
@@ -225,50 +226,6 @@ export default function Recipes({ recipes }) {
           </details>
         </div>
         <div className="container mx-auto p-4">
-          {/* filter input */}
-          {/* <div className="mb-4">
-          <input
-            className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
-            type="text"
-            placeholder="Filter by recipe name"
-            value={filterText}
-            onChange={(e) => setFilterText(e.target.value)}
-          />
-          <div class="flex">
-            <ul class="items-center w-full text-sm font-medium text-gray-900 rounded-lg sm:flex">
-              <li class="w-full ">
-                <div class="flex items-center pl-3">
-                  <input id="vue-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
-                    name="easy"
-                    checked={filters.easy}
-                    onChange={onFilterClicked}
-                  />
-                  <label for="vue-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Easy</label>
-                </div>
-              </li>
-              <li class="w-full  ">
-                <div class="flex items-center pl-3">
-                  <input id="react-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
-                    name="medium"
-                    checked={filters.medium}
-                    onChange={onFilterClicked}
-                  />
-                  <label for="react-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Medium</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="angular-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
-                    name="hard"
-                    checked={filters.hard}
-                    onChange={onFilterClicked}
-                  />
-                  <label for="angular-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Hard</label>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div> */}
 
           {/* <!-- recipe card grid--> */}
           <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16 z-0">
