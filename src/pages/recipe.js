@@ -185,7 +185,7 @@ export default function Recipes({ recipes }) {
             <summary
               class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer"
             >
-              <span class="text-sm font-medium"> Price </span>
+              <span class="text-sm font-medium"> Difficulty </span>
 
               <span class="transition group-open:-rotate-180">
                 <svg
@@ -207,41 +207,70 @@ export default function Recipes({ recipes }) {
 
             <div class="bg-white border-t border-gray-200">
               <header class="flex items-center justify-between p-4">
-                <span class="text-sm text-gray-700"> The highest price is $600 </span>
+                <span class="text-sm text-gray-700"> 0 Selected </span>
 
                 <button
                   type="button"
                   class="text-sm text-gray-900 underline underline-offset-4"
+                  onClick={reset}
+                  onChange={onFilterClicked}
                 >
           Reset
                 </button>
               </header>
 
-              <div class="p-4 border-t border-gray-200">
-                <div class="flex justify-between gap-4">
-                  <label for="FilterPriceFrom" class="flex items-center gap-2">
-                    <span class="text-sm text-gray-600">$</span>
-
+              <ul class="p-4 space-y-1 border-t border-gray-200">
+                <li>
+                  <label for="FilterEasy" class="inline-flex items-center gap-2">
                     <input
-                      type="number"
-                      id="FilterPriceFrom"
-                      placeholder="From"
-                      class="w-full border-gray-200 rounded-md shadow-sm sm:text-sm"
+                      type="checkbox"
+                      id="FilterEasy"
+                      class="w-5 h-5 border-gray-300 rounded"
+                      name="easy"
+                      checked={filters.easy}
+                      onChange={onFilterClicked}
                     />
+
+                    <span class="text-sm font-medium text-gray-700">
+                    Easy
+                    </span>
                   </label>
+                </li>
 
-                  <label for="FilterPriceTo" class="flex items-center gap-2">
-                    <span class="text-sm text-gray-600">$</span>
-
+                <li>
+                  <label for="FilterMedium" class="inline-flex items-center gap-2">
                     <input
-                      type="number"
-                      id="FilterPriceTo"
-                      placeholder="To"
-                      class="w-full border-gray-200 rounded-md shadow-sm sm:text-sm"
+                      type="checkbox"
+                      id="FilterMedium"
+                      class="w-5 h-5 border-gray-300 rounded"
+                      name="medium"
+                      checked={filters.medium}
+                      onChange={onFilterClicked}
                     />
+
+                    <span class="text-sm font-medium text-gray-700">
+                    Medium
+                    </span>
                   </label>
-                </div>
-              </div>
+                </li>
+
+                <li>
+                  <label for="FilterHard" class="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="FilterHard"
+                      class="w-5 h-5 border-gray-300 rounded"
+                      name="hard"
+                      checked={filters.hard}
+                      onChange={onFilterClicked}
+                    />
+
+                    <span class="text-sm font-medium text-gray-700">
+                    Hard
+                    </span>
+                  </label>
+                </li>
+              </ul>
             </div>
           </details>
         </div>
