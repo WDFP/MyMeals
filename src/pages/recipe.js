@@ -25,33 +25,41 @@ export default function Recipes({ recipes }) {
       recipe.name.toLowerCase().includes(filterText.toLowerCase())
     )
     .filter((recipe) => {
-      if (filters.easy && recipe.score > 60) return true;
-      if (filters.medium && recipe.score <= 60 && recipe.score > 30) return true;
-      if (filters.hard && recipe.score <= 30) return true;
+      if (filters.easy && recipe.difficulty === 1) return true;
+      if (filters.medium && recipe.difficulty === 2) return true;
+      if (filters.hard && recipe.difficulty === 3) return true;
       return !filters.easy && !filters.medium && !filters.hard;
     });
 
-  const getScoreTagClass = (score) => {
-    if (score > 60) {
+  const getDifficultyTagClass = (difficulty) => {
+    if (difficulty === 1) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
-    } else if (score > 30 && score <= 60) {
+    } else if (difficulty === 2) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
-    } else if (score <= 30) {
+    } else if (difficulty === 3) {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
     } else {
       return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
     }
   };
 
-  const getScoreTagLabel = (score) => {
-    if (score > 60) {
+  const getDifficultyTagLabel = (difficulty) => {
+    if (difficulty === 1) {
       return "Easy";
-    } else if (score > 30 && score <= 60) {
+    } else if (difficulty === 2) {
       return "Medium";
-    } else if (score <= 30) {
+    } else if (difficulty === 3) {
       return "Hard";
     } else {
       return "Unknown";
+    }
+  };
+
+  const checkIfRecipeIsFavorited = (recipeId) => {
+    if (recipeId) {
+      return "M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z";
+    } else {
+      return "M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z";
     }
   };
 
@@ -282,8 +290,8 @@ export default function Recipes({ recipes }) {
                           clipRule="evenodd"
                         />
                       </svg>
-                      {/* Number of steps */}
-                      <span className="ml-1 lg:text-xl">#</span>
+                      {/* Number of score */}
+                      <span className="ml-1 lg:text-xl">{recipe.score}</span>
                     </div>
                     <div className="flex items-center">
                       <svg
@@ -319,9 +327,27 @@ export default function Recipes({ recipes }) {
                     <button className={viewRecipeButton}>{viewRecipeLabel}</button>
                   </Link>
                 </div>
-                {/* score tag */}
-                <div className={getScoreTagClass(recipe.score)}>
-                  <span>{getScoreTagLabel(recipe.score)}</span>
+                {/* Difficulty tag */}
+                <div className={getDifficultyTagClass(recipe.difficulty)}>
+                  <span>{getDifficultyTagLabel(recipe.difficulty)}</span>
+                </div>
+                {/* Add to favorites */}
+                <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                    
+
+                  </button>
+                </div>
+                {/* Add to bookmarks */}
+                <div className="absolute top-20 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             ))}
