@@ -74,6 +74,7 @@ export default function Recipes({ recipes }) {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
+    setFilters(defaultFilters);
   };
 
   return (
