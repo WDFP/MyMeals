@@ -10,12 +10,26 @@ const viewRecipeButton =
   "text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700";
 const viewRecipeLabel = "View Recipe";
 
-export default function Recipes({recipes}) {
+export default function Recipes({ recipes }) {
+  const defaultFilters = {
+    easy: false,
+    medium: false,
+    hard: false
+  };
 
   const [filterText, setFilterText] = useState("");
-  const filteredRecipes = recipes.filter((recipe) =>
-    recipe.name.toLowerCase().includes(filterText.toLowerCase())
-  );
+  const [filters, setFilters] = useState(defaultFilters);
+
+  const filteredRecipes = recipes
+    .filter((recipe) =>
+      recipe.name.toLowerCase().includes(filterText.toLowerCase())
+    )
+    .filter((recipe) => {
+      if (filters.easy && recipe.score > 60) return true;
+      if (filters.medium && recipe.score <= 60 && recipe.score > 30) return true;
+      if (filters.hard && recipe.score <= 30) return true;
+      return !filters.easy && !filters.medium && !filters.hard;
+    });
 
   const getScoreTagClass = (score) => {
     if (score > 60) {
@@ -41,96 +55,144 @@ export default function Recipes({recipes}) {
     }
   };
 
+  const onFilterClicked = (e) => {
+    const target = e.target;
+    const value = target.name;
+    const checked = target.checked;
+
+    setFilters((previousFilters) => {
+      return {
+        ...previousFilters,
+        [value]: checked,
+      };
+    });
+  };
+
   return (
     <div>
-      <div className='container mx-auto p-4'>
+      <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900">Recipes</h1>
+      </div>
+      <div className="container mx-auto p-4">
         {/* filter input */}
         <div className="mb-4">
-          <input 
+          <input
             className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
-            type="text" 
+            type="text"
             placeholder="Filter by recipe name"
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
           />
+          <div class="flex">
+            <ul class="items-center w-full text-sm font-medium text-gray-900 rounded-lg sm:flex">
+              <li class="w-full ">
+                <div class="flex items-center pl-3">
+                  <input id="vue-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
+                    name="easy"
+                    checked={filters.easy}
+                    onChange={onFilterClicked}
+                  />
+                  <label for="vue-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Easy</label>
+                </div>
+              </li>
+              <li class="w-full  ">
+                <div class="flex items-center pl-3">
+                  <input id="react-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
+                    name="medium"
+                    checked={filters.medium}
+                    onChange={onFilterClicked}
+                  />
+                  <label for="react-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Medium</label>
+                </div>
+              </li>
+              <li class="w-full">
+                <div class="flex items-center pl-3">
+                  <input id="angular-checkbox-list" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded focus:ring-blue-500"
+                    name="hard"
+                    checked={filters.hard}
+                    onChange={onFilterClicked}
+                  />
+                  <label for="angular-checkbox-list" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Hard</label>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* <!-- recipe card grid--> */}
-        <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
+        <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
           {filteredRecipes.map((recipe) => (
-            <div key={recipe.id}
-              className='flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md'
+            <div
+              key={recipe.id}
+              className="flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md"
             >
               <div>
                 {/* recipe image */}
                 <Image
-                  className='w-full'
+                  className="w-full"
                   src={recipe.thumbnail_url}
                   alt={recipe.name}
                   width={500}
                   height={500}
                 />
               </div>
-              <div className='p-4'>
+              <div className="p-4">
                 {/* recipe title */}
-                <h2
-                  className={"line-clamp-1 " + recipeTitle}
-                  title={recipe.name}
-                >
+                <h2 className={"line-clamp-1 " + recipeTitle} title={recipe.name}>
                   {recipe.name}
                 </h2>
-                <div className='flex justify-between mt-4 mb-4 text-gray-500'>
-                  <div className='flex items-center'>
+                <div className="flex justify-between mt-4 mb-4 text-gray-500">
+                  <div className="flex items-center">
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-6 w-6'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
                       <path
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                        stroke-width='2'
-                        d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
                     {/* cook time */}
-                    <span className='ml-1 lg:text-xl'>{recipe.cook_time}</span>
+                    <span className="ml-1 lg:text-xl">{recipe.cook_time}</span>
                   </div>
-                  <div className='flex items-center'>
+                  <div className="flex items-center">
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5'
-                      viewBox='0 0 20 20'
-                      fill='currentColor'
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                      <path d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z' />
+                      <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                       <path
-                        fill-rule='evenodd'
-                        d='M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z'
-                        clip-rule='evenodd'
+                        fillRule="evenodd"
+                        d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                        clipRule="evenodd"
                       />
                     </svg>
                     {/* Number of steps */}
-                    <span className='ml-1 lg:text-xl'>#</span>
+                    <span className="ml-1 lg:text-xl">#</span>
                   </div>
-                  <div className='flex items-center'>
+                  <div className="flex items-center">
                     <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5'
-                      viewBox='0 0 20 20'
-                      fill='currentColor'
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
                     >
-                      <path d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z' />
+                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                     </svg>
                     {/* servings */}
-                    <span className='ml-1 lg:text-xl'>{recipe.servings}</span>
+                    <span className="ml-1 lg:text-xl">{recipe.servings}</span>
                   </div>
                 </div>
                 {/* description */}
                 <p
-                  className='mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3'
+                  className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3"
                   title={recipe.description}
                 >
                   {recipe.description}
@@ -146,9 +208,7 @@ export default function Recipes({recipes}) {
                     },
                   }}
                 >
-                  <button className={viewRecipeButton}>
-                    {viewRecipeLabel}
-                  </button>
+                  <button className={viewRecipeButton}>{viewRecipeLabel}</button>
                 </Link>
               </div>
               {/* score tag */}
@@ -167,13 +227,11 @@ export async function getServerSideProps() {
   try {
     const client = await clientPromise;
     const db = client.db(MONGODB_DB);
-
     const recipes = await db
       .collection("recipes")
       .find({})
       // .limit()
       .toArray();
-
     return {
       props: { recipes: JSON.parse(JSON.stringify(recipes)) },
     };
