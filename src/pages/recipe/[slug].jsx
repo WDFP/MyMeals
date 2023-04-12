@@ -47,6 +47,26 @@ function Recipe() {
     }
   };
 
+  const handleGroceryClick = async (ingredient) => {
+    try {
+      const response = await fetch("/api/add_grocery", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ingredientName: ingredient.name }),
+      });
+
+      if (response.ok) {
+        console.log("Meal added successfully");
+      } else {
+        console.error("Failed to add ingredient to grocery list.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -164,7 +184,7 @@ function Recipe() {
                           Unit
                         </th>
                         <th scope='col' className='px-2 py-3'>
-                          Extra
+                          Add Grocery
                         </th>
                       </tr>
                     </thead>
@@ -186,7 +206,13 @@ function Recipe() {
                           <td className='px-2 py-4'>
                             {ingredient.primary_unit.display}
                           </td>
-                          <td className='px-2 py-4'>extra comment</td>
+                          <td className='px-2 py-4'>
+                            <button
+                              onClick={() => handleGroceryClick(ingredient)}
+                            >
+                              add grocery
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
