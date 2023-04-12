@@ -16,7 +16,7 @@ export default async (req, res) => {
       .updateOne({}, { $push: { grocery_list: ingredientName } });
 
     if (result.modifiedCount === 1) {
-      console.log(`Grocery successfully added to groceries`);
+      console.log(`${ingredientName} successfully added to groceries`);
       res
         .status(200)
         .json({ message: `Grocery added to groceries successfully` });

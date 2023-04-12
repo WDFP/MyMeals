@@ -6,6 +6,8 @@ const IngredientRow = ({ ingredient }) => {
   const handleGroceryClick = async (ingredient) => {
     if (!isAdded) {
       try {
+        console.log(ingredient);
+        console.log(ingredient.name);
         const response = await fetch("/api/add_grocery", {
           method: "POST",
           headers: {
@@ -15,7 +17,7 @@ const IngredientRow = ({ ingredient }) => {
         });
 
         if (response.ok) {
-          console.log("Meal added successfully");
+          console.log(`Grocery: ${ingredientName} added successfully`);
           setIsAdded(true);
         } else {
           console.error("Failed to add ingredient to grocery list.");
@@ -43,7 +45,7 @@ const IngredientRow = ({ ingredient }) => {
       <td className='px-2 py-4'>{ingredient.primary_unit.display}</td>
       <td className='flex justify-center items-center py-2'>
         <button
-          onClick={handleGroceryClick}
+          onClick={() => handleGroceryClick(ingredient)}
           disabled={isAdded}
           className='text-white bg-green-600 hover:bg-green-800  font-medium rounded-full text-xs px-2 py-2 text-center disabled:bg-green-900'
         >

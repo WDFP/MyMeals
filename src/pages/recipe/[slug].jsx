@@ -49,27 +49,6 @@ function Recipe() {
     }
   };
 
-  const handleGroceryClick = async (ingredient) => {
-    try {
-      const response = await fetch("/api/add_grocery", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ingredientName: ingredient.name }),
-      });
-
-      if (response.ok) {
-        console.log("Meal added successfully");
-        setButtonText("Added!");
-      } else {
-        console.error("Failed to add ingredient to grocery list.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -192,12 +171,15 @@ function Recipe() {
                       </tr>
                     </thead>
                     <tbody>
-                      {section.ingredients.map((ingredient) => (
-                        <IngredientRow
-                          ingredient={ingredient}
-                          key={ingredient.name}
-                        />
-                      ))}
+                      {section.ingredients.map((ingredient) => {
+                        console.log(ingredient);
+                        return (
+                          <IngredientRow
+                            ingredient={ingredient}
+                            key={ingredient.name}
+                          />
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
