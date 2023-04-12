@@ -1,16 +1,22 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import data from "../../ingredient_and_instructions.json";
-
+import { useState } from "react";
 import StarOutline from "../../images/star-outline.svg";
+import data from "../../ingredient_and_instructions.json";
 
 function Recipe() {
   const router = useRouter();
   const { slug, title, image } = router.query;
 
+  const [isOpen, setIsOpen] = useState(false);
+
   if (!data || !router.query || !data[router.query.slug]) {
     return;
   }
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const ingredientData = data[slug]["ingredient_sections"];
   const instructionData = data[slug]["instructions"];
@@ -26,7 +32,7 @@ function Recipe() {
           <h2 className='mb-4'>Rating</h2>
           <h3 className='mb-4'>13 minutes</h3>
           <p className='mb-4'>Summary text here</p>
-          <div className='flex'>
+          <div className='flex relative'>
             <button
               type='button'
               className='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
@@ -36,9 +42,24 @@ function Recipe() {
             <button
               type='button'
               className='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
+              onClick={toggleDropdown}
             >
               Add to Meal Plan
             </button>
+            {isOpen && (
+              <div className='absolute w-40 top-14 left-14 bg-white shadow-md rounded-md z-10'>
+                {/* Dropdown items */}
+                <ul className='py-2 text-black'>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Monday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Tuesday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Wednesday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Thursday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Friday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Saturday</li>
+                  <li className='px-4 py-2 hover:bg-gray-200'>Sunday</li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
