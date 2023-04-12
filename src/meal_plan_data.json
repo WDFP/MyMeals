@@ -1,0 +1,89 @@
+[
+  {
+    "Monday": [
+      {
+        "name": "The Best Ever Cauliflower Pizza Crust",
+        "url": "http://localhost:3000/recipe/cauliflower-crust-pizza?title=The+Best+Ever+Cauliflower+Pizza+Crust&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&slug=cauliflower-crust-pizza",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&w=1920&q=75",
+        "id": "cauliflower-crust-pizza"
+      },
+      {
+        "name": "Chicken & Veggie Stir-Fry",
+        "url": "http://localhost:3000/recipe/chicken-veggie-stir-fry?title=Chicken+%26+Veggie+Stir-Fry&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&slug=chicken-veggie-stir-fry",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "chicken-veggie-stir-fry"
+      }
+    ],
+    "Tuesday": [
+      {
+        "name": "Taco-Stuffed Peppers",
+        "url": "http://localhost:3000/recipe/taco-stuffed-peppers?title=Taco-Stuffed+Peppers&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F84475551c69b4666a82929141195c040%2FBFV5383_Taco-StuffedPeppers-Thumb1080SQ.jpg&slug=taco-stuffed-peppers",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F84475551c69b4666a82929141195c040%2FBFV5383_Taco-StuffedPeppers-Thumb1080SQ.jpg&w=1920&q=75",
+        "id": "taco-stuffed-peppers"
+      },
+      {
+        "name": "Cinnamon Roll Apple Pie",
+        "url": "http://localhost:3000/recipe/cinnamon-roll-apple-pie?title=Cinnamon+Roll+Apple+Pie&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F2ce1a4cd2f5945f2993837495e0972dd%2FBFV13708_CinnamonRollApplePie-ThumbTextless1080.jpg&slug=cinnamon-roll-apple-pie",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F2ce1a4cd2f5945f2993837495e0972dd%2FBFV13708_CinnamonRollApplePie-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "cinnamon-roll-apple-pie"
+      }
+    ],
+    "Wednesday": [],
+    "Thursday": [
+      {
+        "name": "The Best Ever Cauliflower Pizza Crust",
+        "url": "http://localhost:3000/recipe/cauliflower-crust-pizza?title=The+Best+Ever+Cauliflower+Pizza+Crust&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&slug=cauliflower-crust-pizza",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&w=1920&q=75",
+        "id": "cauliflower-crust-pizza"
+      },
+      {
+        "name": "Chicken & Veggie Stir-Fry",
+        "url": "http://localhost:3000/recipe/chicken-veggie-stir-fry?title=Chicken+%26+Veggie+Stir-Fry&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&slug=chicken-veggie-stir-fry",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "chicken-veggie-stir-fry"
+      }
+    ],
+    "Friday": [
+      {
+        "name": "The Best Ever Cauliflower Pizza Crust",
+        "url": "http://localhost:3000/recipe/cauliflower-crust-pizza?title=The+Best+Ever+Cauliflower+Pizza+Crust&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&slug=cauliflower-crust-pizza",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&w=1920&q=75",
+        "id": "cauliflower-crust-pizza"
+      },
+      {
+        "name": "Chicken & Veggie Stir-Fry",
+        "url": "http://localhost:3000/recipe/chicken-veggie-stir-fry?title=Chicken+%26+Veggie+Stir-Fry&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&slug=chicken-veggie-stir-fry",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "chicken-veggie-stir-fry"
+      }
+    ],
+    "Saturday": [
+      {
+        "name": "The Best Ever Cauliflower Pizza Crust",
+        "url": "http://localhost:3000/recipe/cauliflower-crust-pizza?title=The+Best+Ever+Cauliflower+Pizza+Crust&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&slug=cauliflower-crust-pizza",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&w=1920&q=75",
+        "id": "cauliflower-crust-pizza"
+      },
+      {
+        "name": "Chicken & Veggie Stir-Fry",
+        "url": "http://localhost:3000/recipe/chicken-veggie-stir-fry?title=Chicken+%26+Veggie+Stir-Fry&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&slug=chicken-veggie-stir-fry",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "chicken-veggie-stir-fry"
+      }
+    ],
+    "Sunday": [
+      {
+        "name": "The Best Ever Cauliflower Pizza Crust",
+        "url": "http://localhost:3000/recipe/cauliflower-crust-pizza?title=The+Best+Ever+Cauliflower+Pizza+Crust&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&slug=cauliflower-crust-pizza",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2F73c9c0d67285449b97a7ac670e5db2de%2FBFV16525_CauliflowerCrustPizza_ThumbC.jpg&w=1920&q=75",
+        "id": "cauliflower-crust-pizza"
+      },
+      {
+        "name": "Chicken & Veggie Stir-Fry",
+        "url": "http://localhost:3000/recipe/chicken-veggie-stir-fry?title=Chicken+%26+Veggie+Stir-Fry&image=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&slug=chicken-veggie-stir-fry",
+        "image_url": "http://localhost:3000/_next/image?url=https%3A%2F%2Fimg.buzzfeed.com%2Fvideo-api-prod%2Fassets%2Fcf779f07644e43d988e37652a4987d7f%2FBFV12730_ChickenBroccoliandMushroomStirFry-ThumbTextless1080.jpg&w=1920&q=75",
+        "id": "chicken-veggie-stir-fry"
+      }
+    ]
+  }
+]
