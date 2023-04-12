@@ -14,6 +14,39 @@ function Recipe() {
     return;
   }
 
+  const link = router.asPath;
+
+  const handleButtonClick = async (event) => {
+    const day = event.target.textContent;
+
+    // Data to send in the request body
+    const dayToUpdate = day; // Update with the appropriate day
+    const mealToAdd = { title, slug, image, link }; // Update with the appropriate meal object
+
+    try {
+      // Send POST request to API endpoint with data
+      const response = await fetch("/api/meal_plans", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dayToUpdate, mealToAdd }),
+      });
+
+      // Check response status
+      if (response.ok) {
+        // Request successful
+        console.log("Meal added successfully");
+      } else {
+        // Request failed
+        console.error("Failed to add meal");
+      }
+    } catch (error) {
+      // Handle any error that occurs
+      console.error(error);
+    }
+  };
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -50,13 +83,27 @@ function Recipe() {
               <div className='absolute w-40 top-14 left-14 bg-white shadow-md rounded-md z-10'>
                 {/* Dropdown items */}
                 <ul className='py-2 text-black'>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Monday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Tuesday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Wednesday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Thursday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Friday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Saturday</li>
-                  <li className='px-4 py-2 hover:bg-gray-200'>Sunday</li>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Monday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Tuesday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Wednesday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Thursday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Friday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Saturday</li>
+                  </button>
+                  <button onClick={handleButtonClick}>
+                    <li className='px-4 py-2 hover:bg-gray-200'>Sunday</li>
+                  </button>
                 </ul>
               </div>
             )}
