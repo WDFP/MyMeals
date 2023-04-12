@@ -51,12 +51,18 @@ function Recipe() {
     setIsOpen(!isOpen);
   };
 
+  const closeDropdown = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
+
   const ingredientData = data[slug]["ingredient_sections"];
   const instructionData = data[slug]["instructions"];
   console.log(data[slug]);
 
   return (
-    <div className='px-6 pb-10 bg-zinc-800'>
+    <div className='px-6 pb-10 bg-zinc-800' onClick={closeDropdown}>
       <div className='grid grid-cols-2 h-[75vh] border-b-2 border-zinc-500 mb-20'>
         <div className='flex flex-col justify-center items-center text-white'>
           <h1 className='text-5xl pb-2 mb-5 text-white pt-5 border-b-2 border-zinc-500 font-serif font-semibold'>
@@ -83,26 +89,47 @@ function Recipe() {
               <div className='absolute w-40 top-14 left-14 bg-white shadow-md rounded-md z-10'>
                 {/* Dropdown items */}
                 <ul className='py-2 text-black'>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Monday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Monday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Tuesday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Tuesday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Wednesday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Wednesday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Thursday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Thursday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Friday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Friday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Saturday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Saturday</li>
                   </button>
-                  <button onClick={handleButtonClick}>
-                    <li className='px-4 py-2 hover:bg-gray-200'>Sunday</li>
+                  <button
+                    onClick={handleButtonClick}
+                    className='px-4 py-2 hover:bg-gray-200 w-full'
+                  >
+                    <li>Sunday</li>
                   </button>
                 </ul>
               </div>
