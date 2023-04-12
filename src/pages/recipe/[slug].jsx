@@ -1,3 +1,4 @@
+import IngredientRow from "@/components/IngredientRow";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -9,6 +10,7 @@ function Recipe() {
   const { slug, title, image } = router.query;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [buttonText, setButtonText] = useState("Add to Groceries");
 
   if (!data || !router.query || !data[router.query.slug]) {
     return;
@@ -59,6 +61,7 @@ function Recipe() {
 
       if (response.ok) {
         console.log("Meal added successfully");
+        setButtonText("Added!");
       } else {
         console.error("Failed to add ingredient to grocery list.");
       }
@@ -183,37 +186,17 @@ function Recipe() {
                         <th scope='col' className='px-2 py-3'>
                           Unit
                         </th>
-                        <th scope='col' className='px-2 py-3'>
+                        <th scope='col' className='px-2 py-3 text-center'>
                           Add Grocery
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {section.ingredients.map((ingredient) => (
-                        <tr
-                          className='bg-zinc-900 border-b dark:border-gray-700'
+                        <IngredientRow
+                          ingredient={ingredient}
                           key={ingredient.name}
-                        >
-                          <th
-                            scope='row'
-                            className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                          >
-                            {ingredient.name}
-                          </th>
-                          <td className='px-2 py-4'>
-                            {ingredient.primary_unit.quantity}
-                          </td>
-                          <td className='px-2 py-4'>
-                            {ingredient.primary_unit.display}
-                          </td>
-                          <td className='px-2 py-4'>
-                            <button
-                              onClick={() => handleGroceryClick(ingredient)}
-                            >
-                              add grocery
-                            </button>
-                          </td>
-                        </tr>
+                        />
                       ))}
                     </tbody>
                   </table>
