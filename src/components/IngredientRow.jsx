@@ -17,7 +17,7 @@ const IngredientRow = ({ ingredient }) => {
         });
 
         if (response.ok) {
-          console.log(`Grocery: ${ingredientName} added successfully`);
+          console.log(`Grocery: ${ingredient.name} added successfully`);
           setIsAdded(true);
         } else {
           console.error("Failed to add ingredient to grocery list.");
