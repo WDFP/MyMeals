@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import NavBar from "@/components/navBar";
+import clientPromise from "@/lib/mongodb";
+const { MONGODB_DB } = process.env;
 
-export default function GroceryList() {
+export default function GroceryList(props) {
 
   const [userInput, setUserInput] = useState('');
   const [itemList, setItemList] = useState([]);
@@ -12,15 +15,50 @@ export default function GroceryList() {
     setUserInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setItemList([userInput, ...itemList]);
     setUserInput('');
+    try {
+      const response = await fetch("/api/add_grocery", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ingredientName: userInput }),
+      });
+      if (response.ok) {
+        console.log(`Grocery: ${userInput} added successfully`);
+        setItemList([userInput, ...itemList]);
+      } else {
+        console.error("Failed to add ingredient to grocery list.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleDelete = (item) => {
+
+
+  const handleDelete = async (item) => {
     const updatedList = itemList.filter((itemListed) => item !== itemListed);
-    setItemList(updatedList);
+    setItemList([...updatedList]);
+    try {
+      const response = await fetch("/api/delete_grocery", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ingredientName: item }),
+      });
+      if (response.ok) {
+        console.log(`Grocery: ${item} deleted successfully`);
+      } else {
+        console.error("Failed to delete ingredient from grocery list.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleEdit = (item, index) => {
@@ -29,7 +67,7 @@ export default function GroceryList() {
     setEditInput(item);
   };
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     const updatedList = itemList.map((item, index) => {
       if (index === editIndex) {
@@ -41,15 +79,39 @@ export default function GroceryList() {
     setEditIndex(null);
     setEditInput('');
     setIsEditing(false);
+    try {
+      const response = await fetch("/api/edit_grocery", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ingredientName: itemList[editIndex], updatedItem: editInput }),
+      });
+      if (response.ok) {
+        console.log(`Grocery: ${itemList[editIndex]} updated to ${editInput} successfully`);
+      } else {
+        console.error("Failed to update ingredient from grocery list.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  return (
-    <div className="text-white bg-green-400">
-    <div>
-      <h1 className="flex flex-col items-center justify-center text-5xl">
-        My Groceries
-      </h1>
+  useEffect(() => {
+    if (props.groceries && props.groceries.length > 0) {
+      setItemList(props.groceries[0].grocery_list);
+    }
+  }, [props.groceries]);
 
+  return (
+    <div className="flex bg-zinc-800">
+      <NavBar />
+      <div className="flex flex-col w-full pt-4">
+        <h1 className="flex mt-20 text-3xl text-white font-bold mb-4 justify-center flex-row">
+          My Groceries
+        </h1>
+        <div>
+          </div>
       <form style={{ display: 'flex', paddingRight: '5px' }}>
         <input
           type="text"
@@ -71,7 +133,7 @@ export default function GroceryList() {
           itemList.map((item, index) => (
             <li
               
-              className="flex-col space-x-2 max-w-md space-y-1 text-black-500 list-disc list-inside dark:text-black-400"
+              className="flex-col mt-3 space-x-2 max-w-md space-y-1 text-white list-disc list-inside dark:text-white-400"
               key={index}
             >
               {isEditing && editIndex === index ? (
@@ -95,9 +157,7 @@ export default function GroceryList() {
                   >
                     Edit
                   </button>
-
                   <button
-                    
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleDelete(item)}
                   >
@@ -113,3 +173,21 @@ export default function GroceryList() {
     </div>
   );
 }
+
+
+export const getServerSideProps = async () => {
+  try {
+    const client = await clientPromise;
+    const db = client.db(MONGODB_DB);
+    const recipes = await db
+      .collection("groceries")
+      .find({})
+      // .limit()
+      .toArray();
+    return {
+      props: { groceries: JSON.parse(JSON.stringify(recipes)) },
+    };
+  } catch (e) {
+    console.error(e);
+  }
+};
