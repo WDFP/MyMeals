@@ -73,26 +73,32 @@ export default function RecipesRefactored() {
     }
   };
 
-  const filteredRecipes = recipesData
-    .filter((recipe) =>{
-      const nameIncludesFilter = recipe.name.toLowerCase().includes(filterText.toLowerCase());
-      const descriptionIncludesFilter = recipe.description.toLowerCase().includes(filterText.toLowerCase());
-      const isFavourited = favouritesData.some(favourite => favourite.recipe_id === recipe._id);
-      return (nameIncludesFilter || descriptionIncludesFilter) && (isFavourited || !filters.favourites);
+
+  const filteredRecipes = recipesData.filter(recipe => {
+    const nameIncludesFilter = recipe.name.toLowerCase().includes(filterText.toLowerCase());
+    const descriptionIncludesFilter = recipe.description.toLowerCase().includes(filterText.toLowerCase());
+    const isFavourited = favouritesData.some(favourite => favourite.recipe_id === recipe._id);
+    
+    if (filters.favourite) {
+      if (filters.easy) {
+        return isFavourited && recipe.difficulty === 1 && (nameIncludesFilter || descriptionIncludesFilter);
+      } else if (filters.medium) {
+        return isFavourited && recipe.difficulty === 2 && (nameIncludesFilter || descriptionIncludesFilter);
+      } else if (filters.hard) {
+        return isFavourited && recipe.difficulty === 3 && (nameIncludesFilter || descriptionIncludesFilter);
+      } else {
+        return isFavourited && (nameIncludesFilter || descriptionIncludesFilter);
+      }
+    } else {
+      const difficultyFilter = filters.easy && filters.medium && filters.hard ? true :
+        filters.easy && recipe.difficulty === 1 ||
+        filters.medium && recipe.difficulty === 2 ||
+        filters.hard && recipe.difficulty === 3;
+  
+      return nameIncludesFilter || descriptionIncludesFilter || difficultyFilter;
 
     }
-    )
-    .filter((recipe) => {
-      if (filters.easy && recipe.difficulty === 1) return true;
-      if (filters.medium && recipe.difficulty === 2) return true;
-      if (filters.hard && recipe.difficulty === 3) return true;
-      if (filters.favourite) {
-        const favouriteRecipes = favouritesData.map(favourite => favourite.recipe_id);
-        return favouriteRecipes.includes(recipe._id);
-      }
-      return !filters.easy && !filters.medium && !filters.hard;
-    });
-
+  });
 
   const handleFilterCheckboxChanged = (e) => {
     const target = e.target;
