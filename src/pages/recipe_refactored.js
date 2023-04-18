@@ -75,30 +75,62 @@ export default function RecipesRefactored() {
 
 
   const filteredRecipes = recipesData.filter(recipe => {
+    // Check whether the recipe name or description includes the filter text
     const nameIncludesFilter = recipe.name.toLowerCase().includes(filterText.toLowerCase());
     const descriptionIncludesFilter = recipe.description.toLowerCase().includes(filterText.toLowerCase());
+    // Check whether the recipe is favourited
     const isFavourited = favouritesData.some(favourite => favourite.recipe_id === recipe._id);
-    
-    if (filters.favourite) {
-      if (filters.easy) {
-        return isFavourited && recipe.difficulty === 1 && (nameIncludesFilter || descriptionIncludesFilter);
-      } else if (filters.medium) {
-        return isFavourited && recipe.difficulty === 2 && (nameIncludesFilter || descriptionIncludesFilter);
-      } else if (filters.hard) {
-        return isFavourited && recipe.difficulty === 3 && (nameIncludesFilter || descriptionIncludesFilter);
-      } else {
-        return isFavourited && (nameIncludesFilter || descriptionIncludesFilter);
-      }
-    } else {
-      const difficultyFilter = filters.easy && filters.medium && filters.hard ? true :
-        filters.easy && recipe.difficulty === 1 ||
-        filters.medium && recipe.difficulty === 2 ||
-        filters.hard && recipe.difficulty === 3;
   
-      return nameIncludesFilter || descriptionIncludesFilter || difficultyFilter;
+    // Helper function to check whether a recipe matches a difficulty filter
+    const matchesDifficultyFilter = (difficulty) => {
+      switch (difficulty) {
+      case 1:
+        return filters.easy;
+      case 2:
+        return filters.medium;
+      case 3:
+        return filters.hard;
+      default:
+        return false;
+      }
+    };
+    
+    // If only the "Favourites" filter is selected, show favourited recipes first
+    if (filters.favourite) {
+      // Check whether the recipe is favourited and matches the name or description filter
+      return isFavourited && (nameIncludesFilter || descriptionIncludesFilter);
+    } else {
+      // If other filters are selected, show all recipes that match the name or description filter and the difficulty filters
+      const matchesDifficulty = filters.easy || filters.medium || filters.hard ?
+        matchesDifficultyFilter(recipe.difficulty) : true;
 
+      return nameIncludesFilter || descriptionIncludesFilter || matchesDifficulty;
     }
-  });
+  })
+  // Sort the filtered recipes to move favourited recipes to the top if only the "Favourites" filter is selected
+    .sort((recipeA, recipeB) => {
+      if (filters.favourite) {
+      // Check whether each recipe is favourited
+        const isFavouritedA = favouritesData.some(favourite => favourite.recipe_id === recipeA._id);
+        const isFavouritedB = favouritesData.some(favourite => favourite.recipe_id === recipeB._id);
+  
+        // If only one recipe is favourited, move it to the top
+        if (isFavouritedA && !isFavouritedB) return -1;
+        if (isFavouritedB && !isFavouritedA) return 1;
+      }
+  
+      // If both recipes are favourited or both are not favourited, don't change their order
+      return 0;
+    })
+  // Apply the difficulty filters
+    .filter(recipe => {
+      if (filters.easy && recipe.difficulty !== 1) return false;
+      if (filters.medium && recipe.difficulty !== 2) return false;
+      if (filters.hard && recipe.difficulty !== 3) return false;
+      return true;
+    });
+  
+
 
   const handleFilterCheckboxChanged = (e) => {
     const target = e.target;
