@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ObjectId } from "mongodb";
 
 const recipeTitle = "text-2xl text-green-400";
 
@@ -202,7 +203,7 @@ export default function RecipesRefactored() {
     const foundFavourite = favouritesData.find(favourite => favourite.recipe_id === recipe._id);
   
     if (foundFavourite) {
-      axios.delete(`/api/favourites/${foundFavourite._id}`)
+      axios.delete(`/api/favourites/${ObjectId(foundFavourite._id)}`)
         .then(response => {
           console.log("Deleting");
           console.log(response);
