@@ -20,8 +20,20 @@ export default async (req, res) => {
 
       // Send a JSON response indicating success
       res.status(201).json({ message: "Favourite added successfully" });
+    } else if (req.method === "DELETE") {
+      // Extract the recipe id from the DELETE request body
+      const { recipe_id } = req.body;
+
+      // Update the document in the "favourites" collection
+      const result = await db.collection("favourites").updateOne(
+        { recipe_id },
+        { $set: { active: false } }
+      );
+
+      // Send a JSON response indicating success
+      res.status(200).json({ message: "Favourite deleted successfully" });
     } else {
-      // If not a POST request, fetch favourites from MongoDB collection
+      // If not a POST or DELETE request, fetch favourites from MongoDB collection
       const favourites = await db
         .collection("favourites")
         .find({})
