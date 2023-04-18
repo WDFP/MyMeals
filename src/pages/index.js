@@ -61,16 +61,19 @@ export default function Home() {
         <title>MyMeals HomePage</title>
       </Head>
       <div className=" bg-zinc-800 flex flex-col items-center justify-center min-h-screen">
-        <NavBar/>
+        <NavBar />
         <div className="mt-20">
           <h1 className="flex text-3xl text-white font-bold mb-4 justify-evenly flex-row">
             Welcome to MyMeals
           </h1>
         </div>
         <div className="flex flex-col items-center w-full">
-          {CATEGORIES.map((i) => {
+          {CATEGORIES.map((i, index) => {
             return (
-              <div className="flex w-full items-center justify-center">
+              <div
+                key={`${i.title}${index}`}
+                className="flex w-full items-center justify-center"
+              >
                 <Link
                   className="bg-green-400 text-white w-80 text-center py-6 rounded-3xl text-2xl font-medium border-solid hover:border-dotted border-black border-2"
                   href={i.href}
