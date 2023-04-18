@@ -1,16 +1,17 @@
-/* eslint-disable func-style */
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+/* eslint-disable react/jsx-key */
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import clientPromise from "@/lib/mongodb";
-const { MONGODB_DB } = process.env;
+import Link from "next/link";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const recipeTitle = "text-2xl text-green-400";
 const viewRecipeButton =
   "text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700";
 const viewRecipeLabel = "View Recipe";
 
-export default function Recipes({ recipes }) {
+export default function RecipesRefactored() {
+
   const defaultFilters = {
     easy: false,
     medium: false,
@@ -19,29 +20,35 @@ export default function Recipes({ recipes }) {
 
   const [filterText, setFilterText] = useState("");
   const [filters, setFilters] = useState(defaultFilters);
+  const [favouritesData, setFavouritesData] = useState([]);
+  const [favouriteRecipes, setFavouriteRecipes] = useState([]);
+  const [recipesData, setRecipesData] = useState([]);
+  
+  const selectedCount = Object.values(filters).filter(value => value).length;
 
-  const filteredRecipes = recipes
-    .filter((recipe) =>
-      recipe.name.toLowerCase().includes(filterText.toLowerCase())
-    )
-    .filter((recipe) => {
-      if (filters.easy && recipe.difficulty === 1) return true;
-      if (filters.medium && recipe.difficulty === 2) return true;
-      if (filters.hard && recipe.difficulty === 3) return true;
-      return !filters.easy && !filters.medium && !filters.hard;
-    });
+  useEffect(() => {
+    axios.get('/api/favourites')
+      .then(response => {
+        setFavouritesData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
-  const getDifficultyTagClass = (difficulty) => {
-    if (difficulty === 1) {
-      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
-    } else if (difficulty === 2) {
-      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
-    } else if (difficulty === 3) {
-      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
-    } else {
-      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
-    }
-  };
+    axios.get('/api/recipes')
+      .then(response => {
+        setRecipesData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const favouriteRecipeIds = favouritesData.map(favourite => favourite.recipe_id);
+    const filteredFavourites = recipesData.filter(recipe => favouriteRecipeIds.includes(recipe._id));
+    setFavouriteRecipes(filteredFavourites);
+  }, [recipesData, favouritesData]);
 
   const getDifficultyTagLabel = (difficulty) => {
     if (difficulty === 1) {
@@ -54,28 +61,113 @@ export default function Recipes({ recipes }) {
       return "Unknown";
     }
   };
-
-  const checkIfRecipeIsFavorited = (recipeId) => {
-    if (recipeId) {
-      return "M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z";
+  const getDifficultyTagClass = (difficulty) => {
+    if (difficulty === 1) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-green-400";
+    } else if (difficulty === 2) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-yellow-400";
+    } else if (difficulty === 3) {
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-red-400";
     } else {
-      return "M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z";
+      return "absolute top-0 right-0 mt-4 mr-4 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase bg-gray-400";
     }
   };
 
-  const onFilterClicked = (e) => {
+
+  const filteredRecipes = recipesData.filter(recipe => {
+    // Check whether the recipe name or description includes the filter text
+    const nameIncludesFilter = recipe.name.toLowerCase().includes(filterText.toLowerCase());
+    const descriptionIncludesFilter = recipe.description.toLowerCase().includes(filterText.toLowerCase());
+    // Check whether the recipe is favourited
+    const isFavourited = favouritesData.some(favourite => favourite.recipe_id === recipe._id);
+  
+    // Helper function to check whether a recipe matches a difficulty filter
+    const matchesDifficultyFilter = (difficulty) => {
+      switch (difficulty) {
+      case 1:
+        return filters.easy;
+      case 2:
+        return filters.medium;
+      case 3:
+        return filters.hard;
+      default:
+        return false;
+      }
+    };
+    
+    // If only the "Favourites" filter is selected, show favourited recipes first
+    if (filters.favourite) {
+      // Check whether the recipe is favourited and matches the name or description filter
+      return isFavourited && (nameIncludesFilter || descriptionIncludesFilter);
+    } else {
+      // If other filters are selected, show all recipes that match the name or description filter and the difficulty filters
+      const matchesDifficulty = filters.easy || filters.medium || filters.hard ?
+        matchesDifficultyFilter(recipe.difficulty) : true;
+
+      return nameIncludesFilter || descriptionIncludesFilter || matchesDifficulty;
+    }
+  })
+  // Sort the filtered recipes to move favourited recipes to the top if only the "Favourites" filter is selected
+    .sort((recipeA, recipeB) => {
+      if (filters.favourite) {
+      // Check whether each recipe is favourited
+        const isFavouritedA = favouritesData.some(favourite => favourite.recipe_id === recipeA._id);
+        const isFavouritedB = favouritesData.some(favourite => favourite.recipe_id === recipeB._id);
+  
+        // If only one recipe is favourited, move it to the top
+        if (isFavouritedA && !isFavouritedB) return -1;
+        if (isFavouritedB && !isFavouritedA) return 1;
+      }
+  
+      // If both recipes are favourited or both are not favourited, don't change their order
+      return 0;
+    })
+  // Apply the difficulty filters
+    .filter(recipe => {
+      if (filters.easy && recipe.difficulty !== 1) return false;
+      if (filters.medium && recipe.difficulty !== 2) return false;
+      if (filters.hard && recipe.difficulty !== 3) return false;
+      return true;
+    });
+  
+
+
+  const handleFilterCheckboxChanged = (e) => {
     const target = e.target;
     const value = target.name;
     const checked = target.checked;
-
-    setFilters((previousFilters) => {
-      return {
+  
+    setFilters(previousFilters => {
+      let updatedFilters = {
         ...previousFilters,
-        [value]: checked,
+        [value]: checked
       };
+  
+      // If one of the difficulty filters is checked, uncheck the others
+      if (value === "easy" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          medium: false,
+          hard: false
+        };
+      } else if (value === "medium" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          easy: false,
+          hard: false
+        };
+      } else if (value === "hard" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          easy: false,
+          medium: false
+        };
+      }
+  
+      return updatedFilters;
     });
   };
-
+  
   const reset = () => {
     console.log("reset");
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -89,15 +181,14 @@ export default function Recipes({ recipes }) {
     <div>
       <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900"> Recipes </h1>
-        
+        {/* Filter dropdown */}
         <div class="space-y-2 p-4 sticky top-0 z-10 bg-gray-100">
-          {/* Filter dropdown */}
           {/* Filter text */}
           <div className="mb-4">
             <input
               className="border-solid border-2 border-gray-200 p-2 rounded-md w-full"
               type="text"
-              placeholder="Filter by recipe name"
+              placeholder="Filter by recipe name or description"
               value={filterText}
               onChange={(e) => setFilterText(e.target.value)}
             /></div>
@@ -107,6 +198,15 @@ export default function Recipes({ recipes }) {
               class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer">
                 
               <span class="text-sm font-medium"> Additional Filters </span>
+              <span class="text-sm text-gray-700"> {selectedCount} Selected
+                {selectedCount > 0 ? <button
+                  type="button"
+                  class="text-xs text-gray-900 underline underline-offset-4 ml-2"
+                  onClick={reset}
+                  onChange={handleFilterCheckboxChanged}>
+                    Reset
+                </button> : ""}
+              </span>
               <span class="transition group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,16 +223,52 @@ export default function Recipes({ recipes }) {
               </span>
             </summary>
             <div class="bg-white border-t border-gray-200"> {/* section under the Difficulty header */}
+              {/* Second section of the filter */}
+              <ul class="p-4 space-y-1 border-t border-gray-200">
+                {/* Favourite filter */}
+                <li>
+                  <label htmlFor="FilterFavourite" className="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="FilterFavourite"
+                      className="w-5 h-5 border-gray-300 rounded"
+                      name="favourite"
+                      checked={filters.favourite}
+                      onChange={handleFilterCheckboxChanged}
+                    />
+                    <span className="text-sm font-medium text-gray-700"> Favourite </span>
+                  </label>
+                </li>
+                {/* My Plan filter */}
+                <li>
+                  <label for="FilterMealPlan" class="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="FilterMealPlan"
+                      class="w-5 h-5 border-gray-300 rounded"
+                      name="mealPlan"
+                      checked={filters.mealPlan}
+                      onChange={handleFilterCheckboxChanged}/>
+                    <span class="text-sm font-medium text-gray-700">  In my plan (not implemented)  </span>
+                  </label>
+                </li>
+                {/* Owned filter */}
+                <li>
+                  <label for="FilterCreated" class="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="FilterCreated"
+                      class="w-5 h-5 border-gray-300 rounded"
+                      name="created"
+                      checked={filters.created}
+                      onChange={handleFilterCheckboxChanged}/>
+                    <span class="text-sm font-medium text-gray-700"> Owned by me (not implemented) </span>
+                  </label>
+                </li>
+              </ul>
               <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
+                {/* Difficulty filter section */}
                 <span class="text-sm text-gray-700 border-gray-100"> Difficulty </span>
-                <span class="text-sm text-gray-700"> 0 Selected </span>
-                <button
-                  type="button"
-                  class="text-sm text-gray-900 underline underline-offset-4"
-                  onClick={reset}
-                  onChange={onFilterClicked}>
-                  Reset
-                </button>
               </header>
               <ul class="p-4 space-y-1 border-t border-gray-200">
                 {/* Easy filter */}
@@ -144,7 +280,7 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="easy"
                       checked={filters.easy}
-                      onChange={onFilterClicked}/>
+                      onChange={handleFilterCheckboxChanged}/>
 
                     <span class="text-sm font-medium text-gray-700"> Easy </span>
                   </label>
@@ -158,7 +294,7 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="medium"
                       checked={filters.medium}
-                      onChange={onFilterClicked}/>
+                      onChange={handleFilterCheckboxChanged}/>
                     <span class="text-sm font-medium text-gray-700">  Medium  </span>
                   </label>
                 </li>
@@ -171,144 +307,95 @@ export default function Recipes({ recipes }) {
                       class="w-5 h-5 border-gray-300 rounded"
                       name="hard"
                       checked={filters.hard}
-                      onChange={onFilterClicked}/>
+                      onChange={handleFilterCheckboxChanged}/>
                     <span class="text-sm font-medium text-gray-700"> Hard </span>
-                  </label>
-                </li>
-              </ul>
-              {/* Second section of the filter */}
-              <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
-                <span class="text-sm text-gray-700 border-gray-100"> Saved </span>
-                <span class="text-sm text-gray-700 border-gray-100"> 0 Selected </span>
-                <button
-                  type="button"
-                  class="text-sm text-gray-900 underline underline-offset-4"
-                  onClick={reset}
-                  onChange={onFilterClicked}>
-                  Reset
-                </button>
-              </header>
-              <ul class="p-4 space-y-1 border-t border-gray-200">
-                {/* Favourite filter */}
-                <li>
-                  <label for="FilterEasy" class="inline-flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="FilterEasy"
-                      class="w-5 h-5 border-gray-300 rounded"
-                      name="easy"
-                      checked={filters.easy}
-                      onChange={onFilterClicked}/>
-
-                    <span class="text-sm font-medium text-gray-700"> Favourite </span>
-                  </label>
-                </li>
-                {/* My Plan filter */}
-                <li>
-                  <label for="FilterMedium" class="inline-flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="FilterMedium"
-                      class="w-5 h-5 border-gray-300 rounded"
-                      name="medium"
-                      checked={filters.medium}
-                      onChange={onFilterClicked}/>
-                    <span class="text-sm font-medium text-gray-700">  In my plan  </span>
-                  </label>
-                </li>
-                {/* Owned filter */}
-                <li>
-                  <label for="FilterHard" class="inline-flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="FilterHard"
-                      class="w-5 h-5 border-gray-300 rounded"
-                      name="hard"
-                      checked={filters.hard}
-                      onChange={onFilterClicked}/>
-                    <span class="text-sm font-medium text-gray-700"> Owned by me </span>
                   </label>
                 </li>
               </ul>
             </div>
           </details>
         </div>
-        <div className="container mx-auto p-4">
-
-          {/* <!-- recipe card grid--> */}
-          <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16 z-0">
+        {/* <!-- recipe card grid --> */}
+        <div className='container mx-auto p-4'>
+          {/* <!-- recipe card --> */}
+          <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
             {filteredRecipes.map((recipe) => (
               <div
-                key={recipe.id}
-                className="flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md"
+                key={recipe._id}
+                className='flex flex-col justify-between bg-white rounded-md overflow-hidden relative shadow-md'
               >
+                {/* recipe image */}
                 <div>
-                  {/* recipe image */}
                   <Image
-                    className="w-full"
+                    className='w-full'
                     src={recipe.thumbnail_url}
                     alt={recipe.name}
                     width={500}
                     height={500}
                   />
                 </div>
-                <div className="p-4">
+                
+                <div className='p-4'>
                   {/* recipe title */}
-                  <h2 className={"line-clamp-1 " + recipeTitle} title={recipe.name}>
+                  <h2
+                    className={"line-clamp-1 " + recipeTitle}
+                    title={recipe.name}
+                  >
                     {recipe.name}
                   </h2>
-                  <div className="flex justify-between mt-4 mb-4 text-gray-500">
-                    <div className="flex items-center">
+                  {/* cook time */}
+                  <div className='flex justify-between mt-4 mb-4 text-gray-500'>
+                    <div className='flex items-center'>
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='h-6 w-6'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
                       >
                         <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          stroke-width='2'
+                          d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
                         />
                       </svg>
                       {/* cook time */}
-                      <span className="ml-1 lg:text-xl">{recipe.cook_time}</span>
+                      <span className='ml-1 lg:text-xl'>{recipe.cook_time}</span>
                     </div>
-                    <div className="flex items-center">
+                    <div className='flex items-center'>
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='h-5 w-5'
+                        viewBox='0 0 20 20'
+                        fill='currentColor'
                       >
-                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                        <path d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z' />
                         <path
-                          fillRule="evenodd"
-                          d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                          clipRule="evenodd"
+                          fill-rule='evenodd'
+                          d='M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z'
+                          clip-rule='evenodd'
                         />
                       </svg>
-                      {/* Number of score */}
-                      <span className="ml-1 lg:text-xl">{recipe.score}</span>
+                      {/* Number of steps */}
+                      <span className='ml-1 lg:text-xl'>#</span>
                     </div>
-                    <div className="flex items-center">
+                    <div className='flex items-center'>
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='h-5 w-5'
+                        viewBox='0 0 20 20'
+                        fill='currentColor'
                       >
-                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                        <path d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z' />
                       </svg>
                       {/* servings */}
-                      <span className="ml-1 lg:text-xl">{recipe.servings}</span>
+                      <span className='ml-1 lg:text-xl'>{recipe.servings}</span>
                     </div>
                   </div>
                   {/* description */}
                   <p
-                    className="mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3"
+                    className='mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3'
                     title={recipe.description}
                   >
                     {recipe.description}
@@ -324,31 +411,40 @@ export default function Recipes({ recipes }) {
                       },
                     }}
                   >
-                    <button className={viewRecipeButton}>{viewRecipeLabel}</button>
+                    <button className='text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700'>
+                    View Recipe
+                    </button>
                   </Link>
                 </div>
-                {/* Difficulty tag */}
+                {/* score tag */}
                 <div className={getDifficultyTagClass(recipe.difficulty)}>
                   <span>{getDifficultyTagLabel(recipe.difficulty)}</span>
                 </div>
                 {/* Add to favorites */}
-                <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
-                  <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                    </svg>
-                    
-
-                  </button>
-                </div>
-                {/* Add to bookmarks */}
-                <div className="absolute top-20 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
-                  <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                    </svg>
-                  </button>
-                </div>
+                {favouritesData.filter(favourite =>
+                  favourite.recipe_id === recipe._id).length > 0 ?
+                // if true
+                  <div>
+                    <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
+                      <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  :
+                // if false
+                  <div>
+                    <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
+                      <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                }
               </div>
             ))}
           </div>
@@ -356,22 +452,4 @@ export default function Recipes({ recipes }) {
       </div>
     </div>
   );
-}
-
-// How do I paginate my data with getStaticProps?
-export async function getStaticProps() {
-  try {
-    const client = await clientPromise;
-    const db = client.db(MONGODB_DB);
-    const recipes = await db
-      .collection("recipes")
-      .find({})
-      // .limit()
-      .toArray();
-    return {
-      props: { recipes: JSON.parse(JSON.stringify(recipes)) },
-    };
-  } catch (e) {
-    console.error(e);
-  }
 }
