@@ -12,7 +12,6 @@ const viewRecipeLabel = "View Recipe";
 
 export default function RecipesRefactored() {
 
-  
   const defaultFilters = {
     easy: false,
     medium: false,
@@ -24,6 +23,8 @@ export default function RecipesRefactored() {
   const [favouritesData, setFavouritesData] = useState([]);
   const [favouriteRecipes, setFavouriteRecipes] = useState([]);
   const [recipesData, setRecipesData] = useState([]);
+  
+  const selectedCount = Object.values(filters).filter(value => value).length;
 
   useEffect(() => {
     axios.get('/api/favourites')
@@ -76,7 +77,9 @@ export default function RecipesRefactored() {
     .filter((recipe) =>{
       const nameIncludesFilter = recipe.name.toLowerCase().includes(filterText.toLowerCase());
       const descriptionIncludesFilter = recipe.description.toLowerCase().includes(filterText.toLowerCase());
-      return nameIncludesFilter || descriptionIncludesFilter;
+      const isFavourited = favouritesData.some(favourite => favourite.recipe_id === recipe._id);
+      return (nameIncludesFilter || descriptionIncludesFilter) && (isFavourited || !filters.favourites);
+
     }
     )
     .filter((recipe) => {
@@ -90,10 +93,6 @@ export default function RecipesRefactored() {
       return !filters.easy && !filters.medium && !filters.hard;
     });
 
-  // const favouriteRecipesExist = filteredRecipes.some(recipe => {
-  //   const favouriteRecipes = favouritesData.map(favourite => favourite.recipe_id);
-  //   return favouriteRecipes.includes(recipe._id);
-  // });
 
   const handleFilterCheckboxChanged = (e) => {
     const target = e.target;
@@ -138,6 +137,7 @@ export default function RecipesRefactored() {
               class="flex items-center justify-between gap-2 p-4 text-gray-900 transition cursor-pointer">
                 
               <span class="text-sm font-medium"> Additional Filters </span>
+              <span class="text-sm text-gray-700"> {selectedCount} Selected </span>
               <span class="transition group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,6 @@ export default function RecipesRefactored() {
             <div class="bg-white border-t border-gray-200"> {/* section under the Difficulty header */}
               <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
                 <span class="text-sm text-gray-700 border-gray-100"> Difficulty </span>
-                <span class="text-sm text-gray-700"> 0 Selected </span>
                 <button
                   type="button"
                   class="text-sm text-gray-900 underline underline-offset-4"
@@ -210,7 +209,6 @@ export default function RecipesRefactored() {
               {/* Second section of the filter */}
               <header class="flex items-center justify-between p-2 bg-gray-100 border-gray-100">
                 <span class="text-sm text-gray-700 border-gray-100"> Saved </span>
-                <span class="text-sm text-gray-700 border-gray-100"> 0 Selected </span>
                 <button
                   type="button"
                   class="text-sm text-gray-900 underline underline-offset-4"
@@ -236,28 +234,28 @@ export default function RecipesRefactored() {
                 </li>
                 {/* My Plan filter */}
                 <li>
-                  <label for="FilterMedium" class="inline-flex items-center gap-2">
+                  <label for="FilterMealPlan" class="inline-flex items-center gap-2">
                     <input
                       type="checkbox"
-                      id="FilterMedium"
+                      id="FilterMealPlan"
                       class="w-5 h-5 border-gray-300 rounded"
-                      name="medium"
-                      checked={filters.medium}
+                      name="mealPlan"
+                      checked={filters.mealPlan}
                       onChange={handleFilterCheckboxChanged}/>
-                    <span class="text-sm font-medium text-gray-700">  In my plan  </span>
+                    <span class="text-sm font-medium text-gray-700">  In my plan (not implemented)  </span>
                   </label>
                 </li>
                 {/* Owned filter */}
                 <li>
-                  <label for="FilterHard" class="inline-flex items-center gap-2">
+                  <label for="FilterCreated" class="inline-flex items-center gap-2">
                     <input
                       type="checkbox"
-                      id="FilterHard"
+                      id="FilterCreated"
                       class="w-5 h-5 border-gray-300 rounded"
-                      name="hard"
-                      checked={filters.hard}
+                      name="created"
+                      checked={filters.created}
                       onChange={handleFilterCheckboxChanged}/>
-                    <span class="text-sm font-medium text-gray-700"> Owned by me </span>
+                    <span class="text-sm font-medium text-gray-700"> Owned by me (not implemented) </span>
                   </label>
                 </li>
               </ul>
