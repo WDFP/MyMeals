@@ -13,7 +13,6 @@ export default async(req, res) => {
     const recipes = await db
       .collection("recipes")
       .find({})
-      .limit(30)
       .toArray();
 
     // Send JSON response of fetched data

@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ObjectId } from "mongodb";
 
 const recipeTitle = "text-2xl text-green-400";
+const viewRecipeButton =
+  "text-white bg-green-400 p-4 rounded-md w-full uppercase hover:bg-sky-700";
+const viewRecipeLabel = "View Recipe";
 
 export default function RecipesRefactored() {
 
@@ -23,32 +25,6 @@ export default function RecipesRefactored() {
   const [recipesData, setRecipesData] = useState([]);
   
   const selectedCount = Object.values(filters).filter(value => value).length;
-
-  useEffect(() => {
-    fetchRecipes();
-    fetchFavourites();
-  }, []);
-
-
-  const fetchRecipes = () => {
-    axios.get('/api/recipes')
-      .then(response => {
-        setRecipesData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  const fetchFavourites = () => {
-    axios.get('/api/favourites?user_id=mymealuser')
-      .then(response => {
-        setFavouritesData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
   useEffect(() => {
     axios.get('/api/favourites')
@@ -154,6 +130,8 @@ export default function RecipesRefactored() {
       return true;
     });
   
+
+
   const handleFilterCheckboxChanged = (e) => {
     const target = e.target;
     const value = target.name;
@@ -197,32 +175,6 @@ export default function RecipesRefactored() {
       checkbox.checked = false;
     });
     setFilters(defaultFilters);
-  };
-
-  const onFavouriteClicked = (recipe) => {
-    const foundFavourite = favouritesData.find(favourite => favourite.recipe_id === recipe._id);
-  
-    if (foundFavourite) {
-      axios.delete(`/api/favourites/${ObjectId(foundFavourite._id)}`)
-        .then(response => {
-          console.log("Deleting");
-          console.log(response);
-          setFavouritesData(favouritesData.filter(favourite => favourite._id !== foundFavourite._id));
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      axios.post('/api/favourites', { user_id: "mymealuser", recipe_id: recipe._id, active: true })
-        .then(response => {
-          console.log("Adding recipe ID: " + recipe._id + " to favourites");
-          console.log(response);
-          setFavouritesData([...favouritesData, response.data]);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
   };
 
   return (
@@ -474,7 +426,7 @@ export default function RecipesRefactored() {
                 // if true
                   <div>
                     <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
-                      <button onClick={() =>  onFavouriteClicked(recipe)}>
+                      <button>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
@@ -485,7 +437,7 @@ export default function RecipesRefactored() {
                 // if false
                   <div>
                     <div className="absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white">
-                      <button onClick={() =>  onFavouriteClicked(recipe)}>
+                      <button>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
