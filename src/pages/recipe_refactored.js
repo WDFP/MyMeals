@@ -137,11 +137,34 @@ export default function RecipesRefactored() {
     const value = target.name;
     const checked = target.checked;
 
-    setFilters((previousFilters) => {
-      return {
+    setFilters(previousFilters => {
+      let updatedFilters = {
         ...previousFilters,
-        [value]: checked,
+        [value]: checked
       };
+  
+      // If one of the difficulty filters is checked, uncheck the others
+      if (value === "easy" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          medium: false,
+          hard: false
+        };
+      } else if (value === "medium" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          easy: false,
+          hard: false
+        };
+      } else if (value === "hard" && checked) {
+        updatedFilters = {
+          ...updatedFilters,
+          easy: false,
+          medium: false
+        };
+      }
+  
+      return updatedFilters;
     });
   };
 
