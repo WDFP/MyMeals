@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 // displays all favourites in JSON format
 import clientPromise from "../../lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async (req, res) => {
   try {
@@ -22,12 +23,12 @@ export default async (req, res) => {
       res.status(201).json({ message: "Favourite added successfully" });
     } else if (req.method === "DELETE") {
       // Extract the recipe id from the DELETE request body
-      const { recipe_id } = req.body;
+      const { _id } = req.body;
+      console.log("sample", _id);
 
       // Update the document in the "favourites" collection
-      const result = await db.collection("favourites").updateOne(
-        { recipe_id },
-        { $set: { active: false } }
+      const result = await db.collection("favourites").deleteOne(
+        { _id: ObjectId(_id) } ,
       );
 
       // Send a JSON response indicating success
