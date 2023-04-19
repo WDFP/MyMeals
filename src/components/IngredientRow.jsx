@@ -6,8 +6,6 @@ const IngredientRow = ({ ingredient }) => {
   const handleGroceryClick = async (ingredient) => {
     if (!isAdded) {
       try {
-        console.log(ingredient);
-        console.log(ingredient.name);
         const response = await fetch("/api/add_grocery", {
           method: "POST",
           headers: {
@@ -37,7 +35,7 @@ const IngredientRow = ({ ingredient }) => {
     >
       <th
         scope='row'
-        className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+        className='px-6 py-4 font-medium whitespace-nowrap text-white'
       >
         {ingredient.name}
       </th>
