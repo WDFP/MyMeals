@@ -11,7 +11,7 @@ function Recipe() {
   const { slug, title, image } = router.query;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [buttonText, setButtonText] = useState("Add to Groceries");
+  // const [buttonText, setButtonText] = useState("Add to Groceries");
 
   if (!data || !router.query || !data[router.query.slug]) {
     return;
@@ -62,7 +62,6 @@ function Recipe() {
 
   const ingredientData = data[slug]["ingredient_sections"];
   const instructionData = data[slug]["instructions"];
-  console.log(data[slug]);
 
   return (
     <div>
@@ -177,7 +176,6 @@ function Recipe() {
                       </thead>
                       <tbody>
                         {section.ingredients.map((ingredient) => {
-                          console.log(ingredient);
                           return (
                             <IngredientRow
                               ingredient={ingredient}
