@@ -228,7 +228,9 @@ export default function RecipesRefactored() {
 
     if (foundFavourite) {
       axios
-        .delete(`/api/favourites/${ObjectId(foundFavourite._id)}`)
+      .delete("/api/favourites", {
+        data: {_id: foundFavourite._id},
+      })
         .then((response) => {
           console.log("Deleting");
           console.log(response);
