@@ -20,12 +20,13 @@ export default function RecipesPage(props) {
   return (
     <div className="flex h-screen bg-zinc-800">
       <NavBar />
+      
       <div className="w-1/5 h-full flex flex-col justify-center items-center">
         {daysOfWeek.map((day) => (
           <button
             key={day}
-            className={`p-4 cursor-pointer text-white font-bold hover:bg-white hover:text-black mb-4 ${
-              selectedDay === day ? "bg-white text-black" : selectedDay
+            className={`p-4 cursor-pointer text-white font-bold hover:bg-green-400 hover:text-white  mb-4 ${
+              selectedDay === day ? "bg-green-400 text-black" : selectedDay
             }`}
             onClick={() => setSelectedDay(day)}
           >
