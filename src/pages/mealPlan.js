@@ -65,8 +65,8 @@ export default function RecipesPage(props) {
         {daysOfWeek.map((day) => (
           <button
             key={day}
-            className={`p-4 cursor-pointer text-white font-bold hover:bg-white hover:text-black mb-4 ${
-              selectedDay === day ? "bg-white text-black" : selectedDay
+            className={`p-4 cursor-pointer text-white font-bold hover:bg-green-400 hover:text-white  mb-4 ${
+              selectedDay === day ? "bg-green-400 text-black" : selectedDay
             }`}
             onClick={() => setSelectedDay(day)}
           >
