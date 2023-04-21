@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
+import HeartIcon from "@/components/icons/HeartIcon";
 import axios from "axios";
 import { ObjectId } from "mongodb";
 import Image from "next/image";
@@ -582,20 +583,7 @@ export default function RecipesRefactored({
                   <div>
                     <div className='absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white'>
                       <button onClick={() => onFavouriteClicked(recipe)}>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          fill='red'
-                          viewBox='0 0 24 24'
-                          stroke-width='1.5'
-                          stroke='currentColor'
-                          className='w-6 h-6'
-                        >
-                          <path
-                            strokeLinecap='round'
-                            stroke-linejoin='round'
-                            d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z'
-                          />
-                        </svg>
+                        <HeartIcon filled={true} />
                       </button>
                     </div>
                   </div>
@@ -604,20 +592,7 @@ export default function RecipesRefactored({
                   <div>
                     <div className='absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white'>
                       <button onClick={() => onFavouriteClicked(recipe)}>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          fill='none'
-                          viewBox='0 0 24 24'
-                          stroke-width='1.5'
-                          stroke='currentColor'
-                          className='w-6 h-6'
-                        >
-                          <path
-                            strokeLinecap='round'
-                            stroke-linejoin='round'
-                            d='M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z'
-                          />
-                        </svg>
+                        <HeartIcon filled={false} />
                       </button>
                     </div>
                   </div>
