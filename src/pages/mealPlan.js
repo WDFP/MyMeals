@@ -86,7 +86,7 @@ export default function RecipesPage(props) {
                   key={index}
                   className="p-4 border-solid border-black border-2 rounded-lg text-center hover:text-black transition-colors duration-300 items-center w-full mb-2"
                 >
-                  <Link className="flex items-center flex-col gap-5" href={recipe.link}>
+                  <Link className="flex items-center text-2xl flex-col gap-5" href={recipe.link}>
                     {recipe.title}
                     <Image 
                       src={recipe.image}
@@ -96,7 +96,7 @@ export default function RecipesPage(props) {
                     ></Image>
                   </Link>
                   <button
-                    className="bg-green-400 hover:bg-green-500 mt-5 text-black font-bold py-2 px-4 rounded mr-4"
+                    className="bg-green-400 hover:bg-green-200 mt-5 text-black font-bold py-2 px-4 rounded mr-4"
                     onClick={() => handleDeleteMeal(recipe.slug)}
                   >
                     Delete
