@@ -77,7 +77,7 @@ export default function Home() {
                 className="flex w-full items-center justify-center pl-0"
               >
                 <Link
-                  className="bg-green-400 text-white w-full text-center py-6 rounded-3xl text-2xl font-medium border-solid border-black border-2 pl-0"
+                  className="bg-green-400 text-white w-full text-center py-5 rounded-3xl text-2xl font-medium border-solid border-black border-2 pl-0"
                   href={i.href}
                 >
                   {i.title}
