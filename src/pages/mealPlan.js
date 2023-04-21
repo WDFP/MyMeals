@@ -59,9 +59,9 @@ export default function RecipesPage(props) {
   };
 
   return (
-    <div className='flex h-screen bg-zinc-800'>
+    <div className="flex h-screen bg-zinc-800">
       <NavBar />
-      <div className='w-1/5 h-full flex flex-col justify-center items-center'>
+      <div className="w-1/5 h-full flex flex-col justify-center items-center">
         {daysOfWeek.map((day) => (
           <button
             key={day}
@@ -74,36 +74,38 @@ export default function RecipesPage(props) {
           </button>
         ))}
       </div>
-      <div className='flex-1 h-full overflow-auto bg-white flex flex-col justify-center items-center'>
-        <div className='p-4'>
-          <h2 className='text-green-400 font-bold mb-4'>
+      <div className="flex-1 mt-16 overflow-auto bg-white flex flex-col justify-center items-center">
+        <div className="p-4 w-full h-full">
+          <h2 className="text-green-400 font-bold text-center text-5xl mb-5">
             {selectedDay}'s Recipes
           </h2>
-          <div className='flex flex-col items-center w-full'>
-            {mealPlans[selectedDay].map((recipe, index) => (
-              <div
-                key={index}
-                className='p-4 border-solid hover:border-dotted border-black border-2 rounded-lg text-center hover:text-black transition-colors duration-300 items-center w-full'
-              >
-                <Link href={recipe.link}>
-                  {recipe.title}
-                  <Image
-                    src={recipe.image}
-                    width={150}
-                    height={150}
-                    alt={recipe.title}
-                  ></Image>
-                </Link>
-                <button
-                  className='bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded mr-4'
-                  onClick={() => handleDeleteMeal(recipe.slug)}
+          {/* <div className="flex flex-col overflow-y-auto justify-center items-center">
+            <div className="flex flex-row flex-wrap w-full justify-center items-center"> */}
+              {mealPlans[selectedDay].map((recipe, index) => (
+                <div
+                  key={index}
+                  className="p-4 border-solid border-black border-2 rounded-lg text-center hover:text-black transition-colors duration-300 items-center w-full mb-2"
                 >
-                  Delete
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+                  <Link className="flex items-center flex-col gap-5" href={recipe.link}>
+                    {recipe.title}
+                    <Image 
+                      src={recipe.image}
+                      width={150}
+                      height={150}
+                      alt={recipe.title}
+                    ></Image>
+                  </Link>
+                  <button
+                    className="bg-green-400 hover:bg-green-500 mt-5 text-black font-bold py-2 px-4 rounded mr-4"
+                    onClick={() => handleDeleteMeal(recipe.slug)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+          {/* </div>
+        </div> */}
       </div>
     </div>
   );
