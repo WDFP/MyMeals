@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Recipe from "./recipe";
 import NavBar from "@/components/navBar";
 
-export default function Recipes() {
+export default function Recipes({setExtraRecipeData}) {
 
   const defaultFilters = {
     easy: false,
@@ -397,7 +397,7 @@ export default function Recipes() {
           <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
             {filteredRecipes.map((recipe) => (
               <Recipe key={recipe.id} recipe={recipe} favouritesData={favouritesData} recipesData={recipesData}
-                setFavouritesData={setFavouritesData} />
+                setFavouritesData={setFavouritesData} setExtraRecipeData={setExtraRecipeData} />
             ))}
           </div>
         </div>
