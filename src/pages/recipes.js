@@ -3,7 +3,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Recipe from "./recipe";
-import setExtraRecipeData from "./_app";
+import NavBar from "@/components/navBar";
 
 export default function Recipes() {
 
@@ -199,7 +199,7 @@ export default function Recipes() {
 
   return (
     <div>
-      <div className='py-8 px-4 mx-auto max-w-screen-xl lg:py-16'>
+        <NavBar />
         <h1 className='mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900'>
           {" "}
           Recipes{" "}
