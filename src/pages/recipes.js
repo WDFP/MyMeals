@@ -112,9 +112,8 @@ export default function Recipes() {
           filters.easy || filters.medium || filters.hard
             ? matchesDifficultyFilter(recipe.difficulty)
             : true;
-
         return (
-          nameIncludesFilter || descriptionIncludesFilter || matchesDifficulty
+          nameIncludesFilter || descriptionIncludesFilter && matchesDifficulty
         );
       }
     })
