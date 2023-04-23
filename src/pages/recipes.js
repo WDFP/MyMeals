@@ -199,6 +199,7 @@ export default function Recipes() {
 
   return (
     <div>
+      <div className='mt-8 py-8 px-4 mx-auto max-w-screen-xl lg:py-16'>
         <NavBar />
         <h1 className='mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900'>
           {" "}
@@ -397,7 +398,7 @@ export default function Recipes() {
           <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
             {filteredRecipes.map((recipe) => (
               <Recipe key={recipe.id} recipe={recipe} favouritesData={favouritesData} recipesData={recipesData}
-                setFavouritesData={setFavouritesData} setExtraRecipeData={setExtraRecipeData}/>
+                setFavouritesData={setFavouritesData} />
             ))}
           </div>
         </div>
