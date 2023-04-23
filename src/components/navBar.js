@@ -33,7 +33,7 @@ const NavBar = () => {
         </Link>
       </div> */}
       <div className="flex justify-end items-center w-2/6 pr-4">
-        <Link href="/recipe">
+        <Link href="/recipes">
           <button className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-4">
             Recipe
           </button>
