@@ -182,7 +182,7 @@ export default function Recipe({
         {/* View Recipe Button */}
         <Link
           href={{
-            pathname: `/recipe/${recipe.slug}`,
+            pathname: `/recipes/${recipe.slug}`,
             query: {
               title: recipe.name,
               image: recipe.thumbnail_url,
