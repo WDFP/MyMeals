@@ -104,7 +104,7 @@ export default function GroceryList(props) {
   }, [props.groceries]);
 
   return (
-    <div className="flex bg-zinc-800">
+    <div className="flex h-screen bg-zinc-800">
       <NavBar />
       <div className="flex flex-col w-full pt-4">
         <h1 className="flex mt-20 text-3xl text-white font-bold mb-4 justify-center flex-row">
