@@ -9,13 +9,11 @@ export default function Recipe({
   setExtraRecipeData,
   recipe,
   favouritesData,
-  recipesData,
   setFavouritesData
 }) {
 
   const recipeTitle = "text-2xl text-green-400";
 
-  const [favouriteRecipes, setFavouriteRecipes] = useState([]);
   const [isFavourite, setIsFavourite] = useState(() => {
     return favouritesData.filter(
       (favourite) => favourite.recipe_id === recipe._id
@@ -46,51 +44,36 @@ export default function Recipe({
     }
   };
 
-  const onFavouriteClicked = (recipe, isCurrentlyFavourited) => {
-    const foundFavourite = favouritesData.find(
-      (favourite) => favourite.recipe_id === recipe._id
-    );
+  const onFavouriteClicked = async(recipe, isCurrentlyFavourited) => {
+    try {
+      const foundFavourite = favouritesData.find(
+        (favourite) => favourite.recipe_id === recipe._id
+      );
 
-    if (isCurrentlyFavourited) {
-      axios
-        .delete("/api/favourites", {
-          data: { _id: foundFavourite._id },
-        })
-        .then((response) => {
-          console.log("Deleting " + recipe._id + " from favourites");
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      axios
-        .post("/api/favourites", {
-          user_id: "mymealuser",
-          recipe_id: recipe._id,
-        })
-        .then((response) => {
-          console.log("Adding recipe ID: " + recipe._id + " to favourites");
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (isCurrentlyFavourited) {
+        await axios
+          .delete("/api/favourites", {
+            data: { _id: foundFavourite._id },
+          });
+        console.log("Removing " + recipe._id + " from favourites");
+
+      } else {
+        await axios
+          .post("/api/favourites", {
+            user_id: "mymealuser",
+            recipe_id: recipe._id,
+          });
+        console.log("Adding " + recipe._id + " to favourites");
+      }
+
+      const { data: newFavouritesData } = await axios.get("/api/favourites");
+      setFavouritesData(newFavouritesData);
+      setIsFavourite(!isCurrentlyFavourited);
+
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   if (favouritesData) {
-  //     const favouriteRecipeIds = favouritesData.map(
-  //       (favourite) => favourite.recipe_id
-  //     );
-  //     const filteredFavourites = recipesData.filter((recipe) =>
-  //       favouriteRecipeIds.includes(recipe._id)
-  //     );
-  //     setFavouriteRecipes(filteredFavourites);
-  //   }
-    
-  // }, [recipesData, favouritesData]);
   
   if (!recipe) {
     return <div>Recipe not found</div>;
