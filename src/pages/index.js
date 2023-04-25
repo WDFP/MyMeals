@@ -5,10 +5,10 @@ import NavBar from "@/components/navBar";
 
 const CATEGORIES = [
   {
-    href: "/recipes?search=omnivore",
-    title: "Omnivore",
-    description: "'You eat both Meat and Plant products'",
-    img: "./MeatLoversPic.jpeg",
+    href: "/recipes?search=low-carb",
+    title: "Low-carb",
+    description: "'You are on a Special Diet'",
+    img: "./Low-carb.jpeg",
   },
   {
     href: "/recipes?search=vegetarian",
@@ -23,16 +23,16 @@ const CATEGORIES = [
     img: "./BBQ.jpeg",
   },
   {
+    href: "/recipes?search=omnivore",
+    title: "Omnivore",
+    description: "'You eat both Meat and Plant products'",
+    img: "./MeatLoversPic.jpeg",
+  },
+  {
     href: "/recipes?search=holiday",
     title: "Holiday",
     description: "'You love the Advent Calendar Meal'",
     img: "./HolidayMeal.jpeg",
-  },
-  {
-    href: "/recipes?search=low-carb",
-    title: "Low-carb",
-    description: "'You are on a Special Diet'",
-    img: "./Low-carb.jpeg",
   },
   {
     href: "/recipes?search=mediterranean",

@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation';
 
 export default function Recipes({setExtraRecipeData}) {
 
+
   const defaultFilters = {
     easy: false,
     medium: false,
@@ -15,12 +16,13 @@ export default function Recipes({setExtraRecipeData}) {
   };
 
   const searchParams = useSearchParams();
-
   const search = searchParams.get('search');
 
   const [favouritesData, setFavouritesData] = useState([]);
   const [recipesData, setRecipesData] = useState([]);
-  const [filterText, setFilterText] = useState(`${search}`);
+  const [filterText, setFilterText] = useState(
+    search !== null && search !== undefined ? `${search}` : ""
+  );
   const [filters, setFilters] = useState(defaultFilters);
 
   const selectedCount = Object.values(filters).filter((value) => value).length;
@@ -86,6 +88,9 @@ export default function Recipes({setExtraRecipeData}) {
       const descriptionIncludesFilter = recipe.description
         .toLowerCase()
         .includes(filterText.toLowerCase());
+      const keywordsIncludesFilter = recipe.keywords
+        .toLowerCase()
+        .includes(filterText.toLowerCase());
       // Check whether the recipe is favourited
       const isFavourited = favouritesData.some(
         (favourite) => favourite.recipe_id === recipe._id
@@ -109,7 +114,7 @@ export default function Recipes({setExtraRecipeData}) {
       if (filters.favourite) {
         // Check whether the recipe is favourited and matches the name or description filter
         return (
-          isFavourited && (nameIncludesFilter || descriptionIncludesFilter)
+          isFavourited && (nameIncludesFilter || descriptionIncludesFilter || keywordsIncludesFilter)
         );
       } else {
         // If other filters are selected, show all recipes that match the name or description filter and the difficulty filters
@@ -118,7 +123,7 @@ export default function Recipes({setExtraRecipeData}) {
             ? matchesDifficultyFilter(recipe.difficulty)
             : true;
         return (
-          nameIncludesFilter || descriptionIncludesFilter && matchesDifficulty
+          nameIncludesFilter || descriptionIncludesFilter || keywordsIncludesFilter && matchesDifficulty
         );
       }
     })
