@@ -5,37 +5,37 @@ import NavBar from "@/components/navBar";
 
 const CATEGORIES = [
   {
-    href: "/recipes",
+    href: "/recipes?search=omnivore",
     title: "Omnivore",
     description: "'You eat both Meat and Plant products'",
     img: "./MeatLoversPic.jpeg",
   },
   {
-    href: "/recipes",
+    href: "/recipes?search=vegetarian",
     title: "Vegetarian",
     description: "'You don't eat Meat or Fish'",
     img: "./Vegetarian.jpeg",
   },
   {
-    href: "/recipes",
+    href: "/recipes?search=bbq",
     title: "Bbq",
     description: "'You love the outdoor smoke'",
     img: "./BBQ.jpeg",
   },
   {
-    href: "/recipes",
+    href: "/recipes?search=holiday",
     title: "Holiday",
     description: "'You love the Advent Calendar Meal'",
     img: "./HolidayMeal.jpeg",
   },
   {
-    href: "/recipes",
+    href: "/recipes?search=low-carb",
     title: "Low-carb",
     description: "'You are on a Special Diet'",
     img: "./Low-carb.jpeg",
   },
   {
-    href: "/recipes",
+    href: "/recipes?search=mediterranean",
     title: "Mediterranean",
     description: "'You eat loads of veggies, nuts and olive oil'",
     img: "./Meditteranean.jpeg",

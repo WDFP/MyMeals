@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Recipe from "./recipe";
 import NavBar from "@/components/navBar";
+import { useSearchParams } from 'next/navigation';
 
 export default function Recipes({setExtraRecipeData}) {
 
@@ -13,9 +14,13 @@ export default function Recipes({setExtraRecipeData}) {
     hard: false,
   };
 
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get('search');
+
   const [favouritesData, setFavouritesData] = useState([]);
   const [recipesData, setRecipesData] = useState([]);
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useState(`${search}`);
   const [filters, setFilters] = useState(defaultFilters);
 
   const selectedCount = Object.values(filters).filter((value) => value).length;
