@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Recipe from "@/components/recipe/recipe";
 import NavBar from "@/components/navBar";
 import { useSearchParams } from 'next/navigation';
+import { ToastContainer } from 'react-toastify';
 
 export default function Recipes({setExtraRecipeData}) {
 
@@ -26,7 +27,7 @@ export default function Recipes({setExtraRecipeData}) {
   const [filters, setFilters] = useState(defaultFilters);
 
   const selectedCount = Object.values(filters).filter((value) => value).length;
-
+  
   useEffect(() => {
     fetchRecipes();
     fetchFavourites();
@@ -412,6 +413,17 @@ export default function Recipes({setExtraRecipeData}) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
