@@ -3,6 +3,8 @@ import React, { useState, useEffect} from "react";
 import Link from "next/link";
 import HeartIcon from "@/components/icons/HeartIcon";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Recipe({
@@ -56,7 +58,7 @@ export default function Recipe({
             data: { _id: foundFavourite._id },
           });
         console.log("Removing " + recipe._id + " from favourites");
-
+        toast.error("Removing " + recipe.name + " from favourites");
       } else {
         await axios
           .post("/api/favourites", {
@@ -64,6 +66,7 @@ export default function Recipe({
             recipe_id: recipe._id,
           });
         console.log("Adding " + recipe._id + " to favourites");
+        toast.success("Adding " + recipe.name + " to favourites");
       }
 
       const { data: newFavouritesData } = await axios.get("/api/favourites");
