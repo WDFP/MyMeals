@@ -16,7 +16,6 @@ export default async (req, res) => {
       const result = await db.collection("favourites").insertOne({
         user_id,
         recipe_id,
-        active,
       });
 
       // Send a JSON response indicating success
