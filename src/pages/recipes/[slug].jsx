@@ -3,7 +3,6 @@ import NavBar from "@/components/navBar";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import StarOutline from "../../images/star-outline.svg";
 import data from "../../ingredient_and_instructions.json";
 
 function Recipe({ extraRecipeData, setExtraRecipeData }) {
@@ -66,19 +65,19 @@ function Recipe({ extraRecipeData, setExtraRecipeData }) {
   return (
     <div>
       <NavBar />
-      <div className='px-6 pb-10 bg-zinc-800' onClick={closeDropdown}>
-        <div className='grid grid-cols-2 h-[75vh] border-b-2 border-zinc-500 mb-20'>
-          <div className='flex flex-col justify-center items-center text-white'>
-            <h1 className='text-5xl pb-2 mb-5 text-white pt-5 border-b-2 border-zinc-500 font-serif font-semibold'>
+      <div className='px-6 pb-10 bg-white text-black' onClick={closeDropdown}>
+        <div className='grid grid-cols-2 h-[75vh] border-b-2 border-gray-400 mb-20'>
+          <div className='flex flex-col justify-center items-center text-black'>
+            <h1 className='text-5xl pb-2 mb-10 text-black pt-5 border-b-2 border-zinc-500 font-serif font-semibold'>
               {title}
             </h1>
-            <h2 className='mb-4'>{extraRecipeData.rating}/100</h2>
-            <h3 className='mb-4'>{extraRecipeData.time} minutes</h3>
-            <p className='mb-4 px-10 text-center'>{extraRecipeData.summary}</p>
+            <h2 className='mb-4 text-gray-600 pb-5'>{extraRecipeData.rating}/100</h2>
+            <h3 className='mb-4 text-gray-600 pb-5'>{extraRecipeData.time} minutes</h3>
+            <p className='mb-4 px-10 text-center text-gray-600 pb-5'>{extraRecipeData.summary}</p>
             <div className='flex relative'>
               <button
                 type='button'
-                className='text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-800 shadow-lg shadow-purple-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
+                className='text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 shadow-lg shadow-green-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
                 onClick={toggleDropdown}
               >
                 Add to Meal Plan
@@ -143,16 +142,16 @@ function Recipe({ extraRecipeData, setExtraRecipeData }) {
         </div>
         <div className='flex justify-between'>
           <div className='w-1/3'>
-            <h1 className='text-5xl pb-4 text-white'>Ingredients</h1>
+            <h1 className='text-5xl pb-4 text-black'>Ingredients</h1>
             {ingredientData.map((section) => (
               <div key={section.name} className='pb-4'>
-                <h1 className='text-3xl pb-5 w-1/3 text-white'>
+                <h1 className='text-3xl pb-5 w-1/3 text-black'>
                   {section.name}
                 </h1>
                 <div className=''>
                   <div className=' overflow-x-auto'>
                     <table className='w-full text-sm text-left text-gray-400'>
-                      <thead className='text-xs uppercase bg-zinc-700 text-gray-400'>
+                      <thead className='text-xs uppercase bg-gray-300 text-gray-600'>
                         <tr>
                           <th scope='col' className='px-6 py-3'>
                             Ingredient
@@ -185,8 +184,8 @@ function Recipe({ extraRecipeData, setExtraRecipeData }) {
             ))}
           </div>
           <div className='w-[60%] '>
-            <h1 className='text-5xl text-white mb-6'>Instructions</h1>
-            <div className='text-white bg-zinc-900 px-16 rounded-md py-4'>
+            <h1 className='text-5xl text-black mb-6'>Instructions</h1>
+            <div className='text-gray-700 bg-gray-200 px-16 rounded-md py-4'>
               <ol className=''>
                 {instructionData.map((instruction, index) => (
                   <li type='1' key={index} className='py-4'>
