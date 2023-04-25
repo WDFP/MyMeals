@@ -30,17 +30,17 @@ const IngredientRow = ({ ingredient }) => {
 
   return (
     <tr
-      className='bg-zinc-900 border-b dark:border-gray-700'
+      className='bg-gray-200 border-b border-white'
       key={ingredient.name}
     >
       <th
         scope='row'
-        className='px-6 py-4 font-medium whitespace-nowrap text-white'
+        className='px-6 py-4 font-medium whitespace-nowrap text-gray-700'
       >
         {ingredient.name}
       </th>
-      <td className='px-2 py-4'>{ingredient.primary_unit.quantity}</td>
-      <td className='px-2 py-4'>{ingredient.primary_unit.display}</td>
+      <td className='px-2 py-4 text-gray-500'>{ingredient.primary_unit.quantity}</td>
+      <td className='px-2 py-4 text-gray-500'>{ingredient.primary_unit.display}</td>
       <td className='flex justify-center items-center py-2'>
         <button
           onClick={() => handleGroceryClick(ingredient)}
