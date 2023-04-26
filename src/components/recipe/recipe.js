@@ -17,6 +17,7 @@ export default function Recipe({
 }) {
 
   const { data: session } = useSession();
+  const sessionId = session ? session.user.email : "guest";
 
   const recipeTitle = "text-2xl text-green-400";
 
@@ -66,7 +67,7 @@ export default function Recipe({
       } else {
         await axios
           .post("/api/favourites", {
-            user_id: session.user.email,
+            user_id: sessionId,
             recipe_id: recipe._id,
           });
         console.log("Adding " + recipe._id + " to favourites");
