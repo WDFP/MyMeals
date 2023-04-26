@@ -214,7 +214,7 @@ export default function Recipes({ setExtraRecipeData }) {
           Recipes{" "}
         </h1>
         {/* Filter dropdown */}
-        <div className='space-y-2 p-4 sticky top-14 z-10 bg-gray-100'>
+        <div className='space-y-2 p-4 sticky top-14 z-10 bg-gray-100 '>
           {/* Filter text */}
           <div className='mb-4'>
             <input
