@@ -29,23 +29,24 @@ const IngredientRow = ({ ingredient }) => {
   };
 
   return (
-    <tr
-      className='bg-gray-200 border-b border-white'
-      key={ingredient.name}
-    >
+    <tr className='bg-gray-200 border-b border-white' key={ingredient.name}>
       <th
         scope='row'
         className='px-6 py-4 font-medium whitespace-nowrap text-gray-700'
       >
         {ingredient.name}
       </th>
-      <td className='px-2 py-4 text-gray-500'>{ingredient.primary_unit.quantity}</td>
-      <td className='px-2 py-4 text-gray-500'>{ingredient.primary_unit.display}</td>
+      <td className='px-2 py-4 text-gray-500'>
+        {ingredient.primary_unit.quantity}
+      </td>
+      <td className='px-2 py-4 text-gray-500'>
+        {ingredient.primary_unit.display}
+      </td>
       <td className='flex justify-center items-center py-2'>
         <button
           onClick={() => handleGroceryClick(ingredient)}
           disabled={isAdded}
-          className='text-white bg-green-600 hover:bg-green-800  font-medium rounded-full text-xs px-2 py-2 text-center disabled:bg-green-900'
+          className='text-white bg-green-500 hover:bg-green-600  font-medium rounded-full text-xs px-2 py-2 text-center disabled:bg-green-900'
         >
           {isAdded ? "Added!" : "Add to Groceries"}
         </button>

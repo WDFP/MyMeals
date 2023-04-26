@@ -1,15 +1,13 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Recipe from "@/components/recipe/recipe";
 import NavBar from "@/components/navBar";
-import { useSearchParams } from 'next/navigation';
-import { ToastContainer } from 'react-toastify';
+import Recipe from "@/components/recipe/recipe";
+import axios from "axios";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
-export default function Recipes({setExtraRecipeData}) {
-
-
+export default function Recipes({ setExtraRecipeData }) {
   const defaultFilters = {
     easy: false,
     medium: false,
@@ -17,7 +15,7 @@ export default function Recipes({setExtraRecipeData}) {
   };
 
   const searchParams = useSearchParams();
-  const search = searchParams.get('search');
+  const search = searchParams.get("search");
 
   const [favouritesData, setFavouritesData] = useState([]);
   const [recipesData, setRecipesData] = useState([]);
@@ -27,7 +25,7 @@ export default function Recipes({setExtraRecipeData}) {
   const [filters, setFilters] = useState(defaultFilters);
 
   const selectedCount = Object.values(filters).filter((value) => value).length;
-  
+
   useEffect(() => {
     fetchRecipes();
     fetchFavourites();
@@ -77,9 +75,6 @@ export default function Recipes({setExtraRecipeData}) {
       });
   }, []);
 
-
-
-  
   const filteredRecipes = recipesData
     .filter((recipe) => {
       // Check whether the recipe name or description includes the filter text
@@ -100,14 +95,14 @@ export default function Recipes({setExtraRecipeData}) {
       // Helper function to check whether a recipe matches a difficulty filter
       const matchesDifficultyFilter = (difficulty) => {
         switch (difficulty) {
-        case 1:
-          return filters.easy;
-        case 2:
-          return filters.medium;
-        case 3:
-          return filters.hard;
-        default:
-          return false;
+          case 1:
+            return filters.easy;
+          case 2:
+            return filters.medium;
+          case 3:
+            return filters.hard;
+          default:
+            return false;
         }
       };
 
@@ -115,7 +110,10 @@ export default function Recipes({setExtraRecipeData}) {
       if (filters.favourite) {
         // Check whether the recipe is favourited and matches the name or description filter
         return (
-          isFavourited && (nameIncludesFilter || descriptionIncludesFilter || keywordsIncludesFilter)
+          isFavourited &&
+          (nameIncludesFilter ||
+            descriptionIncludesFilter ||
+            keywordsIncludesFilter)
         );
       } else {
         // If other filters are selected, show all recipes that match the name or description filter and the difficulty filters
@@ -124,7 +122,9 @@ export default function Recipes({setExtraRecipeData}) {
             ? matchesDifficultyFilter(recipe.difficulty)
             : true;
         return (
-          nameIncludesFilter || descriptionIncludesFilter || keywordsIncludesFilter && matchesDifficulty
+          nameIncludesFilter ||
+          descriptionIncludesFilter ||
+          (keywordsIncludesFilter && matchesDifficulty)
         );
       }
     })
@@ -200,8 +200,6 @@ export default function Recipes({setExtraRecipeData}) {
     setFilters(defaultFilters);
   };
 
-  
-
   // const handleFavouriteClick = () => {
   //   setIsFavourite(!isFavourite);
   //   setIsFavouriteIconFilled(!isFavouriteIconFilled);
@@ -209,8 +207,8 @@ export default function Recipes({setExtraRecipeData}) {
 
   return (
     <div>
+      <NavBar />
       <div className='mt-8 py-8 px-4 mx-auto max-w-screen-xl lg:py-16'>
-        <NavBar />
         <h1 className='mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-900'>
           {" "}
           Recipes{" "}
@@ -407,14 +405,20 @@ export default function Recipes({setExtraRecipeData}) {
           {/* <!-- recipe card --> */}
           <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
             {filteredRecipes.map((recipe) => (
-              <Recipe key={recipe.id} recipe={recipe} favouritesData={favouritesData} recipesData={recipesData}
-                setFavouritesData={setFavouritesData} setExtraRecipeData={setExtraRecipeData} />
+              <Recipe
+                key={recipe.id}
+                recipe={recipe}
+                favouritesData={favouritesData}
+                recipesData={recipesData}
+                setFavouritesData={setFavouritesData}
+                setExtraRecipeData={setExtraRecipeData}
+              />
             ))}
           </div>
         </div>
       </div>
       <ToastContainer
-        position="bottom-right"
+        position='bottom-right'
         autoClose={5000}
         hideProgressBar={false}
         closeOnClick
@@ -422,7 +426,7 @@ export default function Recipes({setExtraRecipeData}) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme='light'
       />
     </div>
   );
