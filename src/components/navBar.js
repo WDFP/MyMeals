@@ -20,7 +20,7 @@ const NavBar = () => {
       <div className='flex justify-start items-center w-2/6'>
         
         {!session && <button className='bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-4' onClick={handleSignin}>
-          Signin
+          Sign in
         </button>}
         {session && <button className='bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-4' onClick={handleSignout}>
           Sign out
@@ -46,6 +46,13 @@ const NavBar = () => {
         </Link>
       </div> */}
       <div className='flex justify-end items-center w-2/6 pr-4'>
+        {session &&
+          <Link href='/favourites'>
+            <button className='bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-4'>
+              Favourites
+            </button>
+          </Link>
+        }
         <Link href='/recipes'>
           <button className='bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-4'>
             Recipes

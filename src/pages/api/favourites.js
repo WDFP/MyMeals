@@ -10,7 +10,7 @@ export default async (req, res) => {
 
     if (req.method === "POST") {
       // Extract the data from the POST request body
-      const { user_id, recipe_id, active } = req.body;
+      const { user_id, recipe_id } = req.body;
 
       // Create a new document in the "favourites" collection
       const result = await db.collection("favourites").insertOne({
