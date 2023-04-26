@@ -5,6 +5,7 @@ import HeartIcon from "@/components/icons/HeartIcon";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from "@/components/modal";
 
 
 export default function Recipe({
@@ -89,13 +90,7 @@ export default function Recipe({
     >
       {/* recipe image */}
       <div>
-        <Image
-          className='w-full'
-          src={recipe.thumbnail_url}
-          alt={recipe.name}
-          width={500}
-          height={500}
-        />
+        <Modal recipe={recipe} setExtraRecipeData={setExtraRecipeData} />
       </div>
 
       <div className='p-4'>
