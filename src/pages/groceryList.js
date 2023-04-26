@@ -140,7 +140,7 @@ export default function GroceryList(props) {
                     <form onSubmit={handleUpdate}>
                       <input
                         type='text'
-                        className='text-black'
+                        className='text-black bg-gray-200'
                         value={editInput}
                         onChange={(e) => setEditInput(e.target.value)}
                         placeholder='Edit item'
