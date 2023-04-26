@@ -17,9 +17,7 @@ const NavBar = () => {
       </div>
       <div className='flex justify-center items-center w-2/6'>
         <Link href='/'>
-          <div className='text-2xl font-bold text-gray-800 '>
-            Welcome to MyMeals
-          </div>
+          <div className='text-2xl font-bold text-gray-800 '>MyMeals</div>
         </Link>
       </div>
       {/* <div className="flex justify-start items-center w-2/6">

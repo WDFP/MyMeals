@@ -60,12 +60,22 @@ export default function Home() {
       <Head>
         <title>MyMeals HomePage</title>
       </Head>
+      <NavBar />
       <div
-        className='bg-cover bg-center h-screen flex flex-col justify-between'
+        className='bg-cover bg-center h-screen flex flex-col justify-center items-center'
         style={{ backgroundImage: "url(/BackgroundPic.jpeg)" }}
       >
-        <div className='h-2/3'></div>
-        <NavBar />
+        <div className='bg-zinc-900 bg-opacity-70 font-bold text-white w-[1100px] py-5 flex flex-col justify-center items-center mb-32 shadow-zinc-900/80 shadow-xl '>
+          <h1 className='text-8xl w-fit'>Welcome to MyMeals</h1>
+          <p className='w-1/2 text-center my-5'>
+            Our application provides filtered recipes for personalized meal
+            planning and grocery shopping. You can filter by cuisine,
+            ingredients, and dietary restrictions, and our interface offers
+            cooking tips and tricks for a seamless experience. Whether you are a
+            seasoned chef, or a beginner cook, you can enjoy delicious and
+            nutritious meals, without the hassle!
+          </p>
+        </div>
       </div>
       <div className='bg-white flex flex-col items-center mb-20 mx-64'>
         <div className='mt-20'></div>
