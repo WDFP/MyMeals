@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar";
 import clientPromise from "@/lib/mongodb";
+import { useEffect, useState } from "react";
 const { MONGODB_DB } = process.env;
 
 export default function GroceryList(props) {
@@ -106,53 +106,53 @@ export default function GroceryList(props) {
   }, [props.groceries]);
 
   return (
-    <div className="flex h-screen bg-zinc-800">
+    <div className='flex h-screen bg-white'>
       <NavBar />
-      <div className="flex flex-col w-full pt-4">
-        <h1 className="flex mt-20 text-3xl text-white font-bold mb-4 justify-center flex-row">
+      <div className='flex flex-col w-full pt-4'>
+        <h1 className='flex mt-20 text-3xl text-white font-bold mb-4 justify-center flex-row'>
           My Groceries
         </h1>
         <div></div>
         <form style={{ display: "flex", paddingRight: "5px" }}>
           <input
-            type="text"
+            type='text'
             value={userInput}
-            className="text-black bg-white p-4 rounded-md hover:bg-white shadow-sm w-full"
-            placeholder="Enter a grocery item"
+            className='text-black bg-gray-300 mx-10 p-4 rounded-md hover:bg-gray-300 shadow-sm w-full'
+            placeholder='Enter a grocery item'
             onChange={handleChange}
           />
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className='bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 mr-4 rounded'
             onClick={handleSubmit}
           >
             Add Item
           </button>
         </form>
-        <div className="flex justify-center ...">
-          <ul className="flex-col space-y-2  ...">
+        <div className='flex justify-center ...'>
+          <ul className='flex-col space-y-2  ...'>
             {itemList.length >= 1 &&
               itemList.map((item, index) => (
                 <li
-                  className="flex-col mt-3 space-x-2 max-w-md space-y-1 text-white list-disc list-inside dark:text-white-400"
+                  className='flex-col mt-3 space-x-2 max-w-md space-y-1 text-gray-800 list-disc list-inside dark:text-white-400'
                   key={index}
                 >
                   {isEditing && editIndex === index ? (
                     <form onSubmit={handleUpdate}>
                       <input
-                        type="text"
-                        className="text-black"
+                        type='text'
+                        className='text-black bg-gray-200'
                         value={editInput}
                         onChange={(e) => setEditInput(e.target.value)}
-                        placeholder="Edit item"
+                        placeholder='Edit item'
                       />
                       <button
-                        className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded ml-2"
-                        type="submit"
+                        className='bg-orange-500 hover:bg-orange-700 text-gray-800  font-bold py-2 px-4 rounded ml-2'
+                        type='submit'
                       >
                         Update
                       </button>
                       <button
-                        className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded ml-2"
+                        className='bg-slate-500 hover:bg-slate-700 text-gray-800 font-bold py-2 px-4 rounded ml-2'
                         onClick={() => setIsEditing(false)}
                       >
                         Cancel
@@ -162,13 +162,13 @@ export default function GroceryList(props) {
                     <>
                       {item}
                       <button
-                        className="bg-yellow-300 hover:bg-yellow-200 text-white font-bold py-2 ml-2 px-4 rounded"
+                        className='bg-yellow-300 hover:bg-yellow-200 text-gray-800 font-bold py-2 ml-2 px-4 rounded'
                         onClick={() => handleEdit(item, index)}
                       >
                         Edit
                       </button>
                       <button
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        className='bg-red-500 hover:bg-red-700 text-gray-800 font-bold py-2 px-4 rounded'
                         onClick={() => handleDelete(item)}
                       >
                         Delete

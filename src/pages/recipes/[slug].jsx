@@ -65,19 +65,28 @@ function Recipe({ extraRecipeData, setExtraRecipeData }) {
   return (
     <div>
       <NavBar />
-      <div className='px-6 pb-10 bg-white text-black' onClick={closeDropdown}>
+      <div
+        className='px-6 pb-10 bg-white text-gray-800'
+        onClick={closeDropdown}
+      >
         <div className='grid grid-cols-2 h-[75vh] border-b-2 border-gray-400 mb-20'>
-          <div className='flex flex-col justify-center items-center text-black'>
-            <h1 className='text-5xl pb-2 mb-10 text-black pt-5 border-b-2 border-zinc-500 font-serif font-semibold'>
+          <div className='flex flex-col justify-center items-center text-gray-800'>
+            <h1 className='text-5xl pb-2 mb-10 text-gray-900 pt-5 border-b-2 border-zinc-500 font-serif font-semibold'>
               {title}
             </h1>
-            <h2 className='mb-4 text-gray-600 pb-5'>{extraRecipeData.rating}/100</h2>
-            <h3 className='mb-4 text-gray-600 pb-5'>{extraRecipeData.time} minutes</h3>
-            <p className='mb-4 px-10 text-center text-gray-600 pb-5'>{extraRecipeData.summary}</p>
+            <h2 className='mb-4 text-gray-600 pb-5'>
+              {extraRecipeData.rating}/100
+            </h2>
+            <h3 className='mb-4 text-gray-600 pb-5'>
+              {extraRecipeData.time} minutes
+            </h3>
+            <p className='mb-4 px-10 text-center text-gray-600 pb-5'>
+              {extraRecipeData.summary}
+            </p>
             <div className='flex relative'>
               <button
                 type='button'
-                className='text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 shadow-lg shadow-green-800/80 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
+                className='text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-800 shadow-lg shadow-green-700/80 font-bold rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2'
                 onClick={toggleDropdown}
               >
                 Add to Meal Plan
@@ -145,7 +154,7 @@ function Recipe({ extraRecipeData, setExtraRecipeData }) {
             <h1 className='text-5xl pb-4 text-black'>Ingredients</h1>
             {ingredientData.map((section) => (
               <div key={section.name} className='pb-4'>
-                <h1 className='text-3xl pb-5 w-1/3 text-black'>
+                <h1 className='text-3xl pb-5 w-1/3 text-gray-800'>
                   {section.name}
                 </h1>
                 <div className=''>
