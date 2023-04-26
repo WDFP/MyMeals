@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import React, { useState } from "react";
+import { SessionProvider } from "next-auth/react";
+import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
   const [extraRecipeData, setExtraRecipeData] = useState({
@@ -9,10 +11,12 @@ export default function App({ Component, pageProps }) {
   });
 
   return (
-    <Component
-      {...pageProps}
-      extraRecipeData={extraRecipeData}
-      setExtraRecipeData={setExtraRecipeData}
-    />
+    <SessionProvider session={pageProps.session}>
+      <Component
+        {...pageProps}
+        extraRecipeData={extraRecipeData}
+        setExtraRecipeData={setExtraRecipeData}
+      />
+    </SessionProvider>
   );
 }
