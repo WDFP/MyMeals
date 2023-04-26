@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from "@/components/modal";
+import { useSession } from "next-auth/react";
 
 
 export default function Recipe({
@@ -14,6 +15,9 @@ export default function Recipe({
   favouritesData,
   setFavouritesData
 }) {
+
+  const { data: session } = useSession();
+  const sessionId = session ? session.user.email : "guest";
 
   const recipeTitle = "text-2xl text-green-400";
 
@@ -63,7 +67,7 @@ export default function Recipe({
       } else {
         await axios
           .post("/api/favourites", {
-            user_id: "mymealuser",
+            user_id: sessionId,
             recipe_id: recipe._id,
           });
         console.log("Adding " + recipe._id + " to favourites");
