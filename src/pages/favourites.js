@@ -47,7 +47,7 @@ export default function Favourites({ setExtraRecipeData }) {
           Favourite Recipes
             </h1>
             <div className="container mx-auto p-4">
-              <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
+              <div className="grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
                 {favouritesData.map((favourite) => {
                   const recipe = recipesData.find(
                     (recipe) => recipe._id === favourite.recipe_id
