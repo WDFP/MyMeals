@@ -286,28 +286,8 @@ export default function Recipes({ setExtraRecipeData }) {
                     </span>
                   </label>
                 </li>
-                {/* My Plan filter */}
-                <li>
-                  <label
-                    for='FilterMealPlan'
-                    className='inline-flex items-center gap-2'
-                  >
-                    <input
-                      type='checkbox'
-                      id='FilterMealPlan'
-                      className='w-5 h-5 border-gray-300 rounded'
-                      name='mealPlan'
-                      checked={filters.mealPlan}
-                      onChange={handleFilterCheckboxChanged}
-                    />
-                    <span className='text-sm font-medium text-gray-700'>
-                      {" "}
-                      In my plan (not implemented){" "}
-                    </span>
-                  </label>
-                </li>
                 {/* Owned filter */}
-                <li>
+                {/* <li>
                   <label
                     for='FilterCreated'
                     className='inline-flex items-center gap-2'
@@ -325,7 +305,7 @@ export default function Recipes({ setExtraRecipeData }) {
                       Owned by me (not implemented){" "}
                     </span>
                   </label>
-                </li>
+                </li> */}
               </ul>
               <header className='flex items-center justify-between p-2 bg-gray-100 border-gray-100'>
                 {/* Difficulty filter section */}
@@ -403,7 +383,7 @@ export default function Recipes({ setExtraRecipeData }) {
         {/* <!-- recipe card grid --> */}
         <div className='container mx-auto p-4'>
           {/* <!-- recipe card --> */}
-          <div className='grid gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 mb-16'>
+          <div className='grid gap-4 gap-y-8 md:grid-cols-3 xl:grid-cols-4 mb-16'>
             {filteredRecipes.map((recipe) => (
               <Recipe
                 key={recipe.id}
