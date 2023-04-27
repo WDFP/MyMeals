@@ -35,7 +35,7 @@ Create a [GitHub](https://github.com/settings/developers) OAuth app
 
 Create `.env.local` file in the root:
 ```
-MONGODB_URI = "mongodb+srv://YOURUSER:YOURMONGOPASS@cluster0.jusv6yw.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_URI = 
 MONGODB_USER = 
 MONGODB_PASSWORD = 
 MONGODB_DB = 
