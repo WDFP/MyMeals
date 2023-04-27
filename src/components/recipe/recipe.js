@@ -99,12 +99,12 @@ export default function Recipe({
 
       <div className='p-4'>
         {/* recipe title */}
-        <h2
-          className={"line-clamp-1 " + recipeTitle}
+        <div
+          className={"text-lg text-green-400 line-clamp-1 " + recipeTitle}
           title={recipe.name}
         >
           {recipe.name}
-        </h2>
+        </div>
         {/* cook time */}
         <div className='flex justify-between mt-4 mb-4 text-gray-500'>
           <div className='flex items-center'>
@@ -141,7 +141,7 @@ export default function Recipe({
         </div>
         {/* description */}
         <p
-          className='mb-3 mt-3 text-gray-500 h-4.5 line-clamp-3'
+          className='mb-3 mt-3 text-gray-500 text-sm h-4.5 line-clamp-6'
           title={recipe.description}
         >
           {recipe.description}
