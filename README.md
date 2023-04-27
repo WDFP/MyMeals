@@ -8,13 +8,21 @@ TailwindCSS <br/>
 MongoDB
 
 # Features
+- Select recipes by categories
+- Filter recipes based on title, description, difficulty
+- Sign in option
+  - Allows users to favourite recipes
+  - See their favourites in one page
+- Check out detailed recipes (instructions and ingredients)
+- Add ingredients to a grocery list
+- Add recipe to a meal plan
 
 # Screenshots
-<img src="public/image1.png" style="width:500px><br/>
-<img src="public/image2.png" style="width:500px><br/>
-<img src="public/image3.png" style="width:500px><br/>
-<img src="public/image4.png" style="width:500px><br/>
-<img src="public/image5.png" style="width:500px><br/>
+<img src="public/image1.png" style="width:500px"><br/>
+<img src="public/image2.png" style="width:500px"><br/>
+<img src="public/image3.png" style="width:500px"><br/>
+<img src="public/image4.png" style="width:500px"><br/>
+<img src="public/image5.png" style="width:500px"><br/>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
