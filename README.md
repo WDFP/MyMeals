@@ -24,9 +24,11 @@ MongoDB
 <img src="public/image4.png" style="width:500px"><br/>
 <img src="public/image5.png" style="width:500px"><br/>
 
+# ERD
+<img src="public/ERD.png" style="width:500px"><br/>
+
 
 # Getting Started
-
 Create a [GitHub](https://github.com/settings/developers) OAuth app
 - Create OAuth App
 - App name can be anything
