@@ -176,17 +176,19 @@ export default function Recipe({
         <span>{getDifficultyTagLabel(recipe.difficulty)}</span>
       </div>
       {/* Add to favorites */}
-      <div>
-        <div className='absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white'>
-          <button onClick={() => {
-            const isCurrentlyFavourited = isFavourite;
-            setIsFavourite(!isFavourite);
-            onFavouriteClicked(recipe, isCurrentlyFavourited);
-          }}>
-            <HeartIcon filled={isFavourite} />
-          </button>
+      {session ?
+        <div>
+          <div className='absolute top-8 right-0 mt-4 mr-4 text-grey rounded-full pt-2 pb-1 pl-4 pr-5 text-xs uppercase bg-white'>
+            <button onClick={() => {
+              const isCurrentlyFavourited = isFavourite;
+              setIsFavourite(!isFavourite);
+              onFavouriteClicked(recipe, isCurrentlyFavourited);
+            }}>
+              <HeartIcon filled={isFavourite} />
+            </button>
+          </div>
         </div>
-      </div>
+        : <></>}
     </div>
   );
 }
