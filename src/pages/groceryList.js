@@ -133,7 +133,7 @@ export default function GroceryList(props) {
             {itemList.length >= 1 &&
               itemList.map((item, index) => (
                 <li
-                  className='flex-col mt-3 space-x-2 max-w-md space-y-1 text-gray-800 list-disc list-inside dark:text-white-400'
+                  className='flex-col mt-3 space-x-2 max-w-md space-y-1 text-gray-800 list-inside dark:text-white-400'
                   key={index}
                 >
                   {isEditing && editIndex === index ? (
